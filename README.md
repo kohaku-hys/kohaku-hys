@@ -1,13 +1,12 @@
 # こんにちは、林 琥珀 (Kohaku Hayashi) です 👋
 
-福岡工業大学 情報工学部 電子情報工学科 / 半導体・AI・国際交流に興味があります。
+福岡工業大学 工学部 電子情報工学科 / 半導体・AI・国際交流に興味があります。
 
 ## 🎓 About Me
 
-- 🏫 福岡工業大学 情報工学部 電子情報工学科（2025年入学）
+- 🏫 福岡工業大学 工学部 電子情報工学科（2025年入学）
 - 🌏 GCP (Global Challenge Program) 2025 / GSL (Global Student Leaders) リーダー
 - 🎤 YAPC::Tokyo 2026 Core Staff
-- 💼 株式会社 aruyo.biz インターン（2025/9〜2026/2）
 - 🤝 福岡工業大学内 ピアサポーター・ピアラーニング メンター
 
 ## 🛠️ Tech Stack
@@ -31,7 +30,7 @@ Python 製の個人用 Discord Bot。タスク管理・Google Calendar 連携・
 
 ## 🌐 International Experience
 
-- 🇹🇭 KMITL タイ短期派遣研修（2026/2）— Koito・Yaskawa工場見学
+- 🇹🇭 KMITL タイ短期派遣研修（2026/2）— Koito・Yaskawa インターンシップ
 - 🇸🇬 Singapore SAIL Program 2025 — 福岡NOWプレゼン発表
 - 🇹🇼 亜洲大学・雲林科技大学 学生交流
 
