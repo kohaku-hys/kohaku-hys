@@ -1,0 +1,17 @@
+# AI会話履歴（Claude Code / Letta）— 絶対に公開しない
+.letta/
+
+# 秘密情報
+.env
+*.key
+credentials*.json
+*.pem
+
+# OS / エディタ
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 依存物
+node_modules/
+__pycache__/
