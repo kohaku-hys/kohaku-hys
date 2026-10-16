@@ -154,6 +154,20 @@ h3 { font-size: 17px; margin: 0 0 4px; line-height: 1.5; }
 .timeline li { position: relative; padding: 0 0 18px 22px; display: grid; grid-template-columns: 6.5em minmax(0, 1fr); gap: 2px 14px; }
 .timeline li::before { content: ""; position: absolute; left: -6px; top: 9px; width: 10px; height: 10px; border-radius: 2px; background: var(--surface); border: 2px solid var(--accent); }
 
+/* 強み */
+.strength { font-size: 20px; line-height: 1.7; font-weight: 500; max-width: 34em; margin: 10px 0 18px; }
+.strength .phrase { display: inline-block; }
+.proof { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; max-width: 44em; color: var(--muted); }
+/* 記事・小さな道具・予定 */
+.articles { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; max-width: 52em; }
+.articles li { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+.articles a { min-width: 0; }
+.card.wide { grid-column: 1 / -1; }
+.mini { margin: 8px 0 0; padding-left: 1.2em; color: var(--muted); font-size: 15px; display: grid; gap: 4px; }
+.upcoming-title { margin: 36px 0 12px; font-size: 17px; }
+.upcoming .when { color: var(--accent); }
+@media (max-width: 560px) { .articles li { flex-direction: column; gap: 2px; } }
+
 /* 連絡先 */
 .contact { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 .mail { font: 500 16px var(--font-mono); padding: 8px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; user-select: all; }
@@ -180,6 +194,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
 <header class="bar">
   <div class="wrap">
     <nav aria-label="sections">
+      <a href="#strengths"><span lang="ja">強み</span><span lang="en">Strengths</span></a>
       <a href="#semiconductor"><span lang="ja">半導体</span><span lang="en">Semiconductors</span></a>
       <a href="#global"><span lang="ja">海外</span><span lang="en">Global</span></a>
       <a href="#build"><span lang="ja">作った物</span><span lang="en">Things I built</span></a>
@@ -220,6 +235,20 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
       </figure>
     </div>
   </div>
+
+  <section id="strengths">
+    <div class="wrap">
+      <p class="mark">Strengths</p>
+      <h2><span lang="ja">強み</span><span lang="en">Strengths</span></h2>
+      <p class="strength" lang="ja"><span class="phrase">成長できる場所に自分から飛び込む行動力と、</span><span class="phrase">その場でリーダーを任される人間力です。</span></p>
+      <p class="strength" lang="en">I step into places where I can grow, and the people there trust me to lead.</p>
+      <ul class="proof">
+        <li><span lang="ja">大学が案内した半導体のプログラムに続けて参加し、九州大学の3つと IBM の THE GAME に出ました。</span><span lang="en">I kept joining the semiconductor programs my university announced: three at Kyushu University and THE GAME by IBM.</span></li>
+        <li><span lang="ja">シンガポールとタイの研修では、現地でリーダーを任されました。</span><span lang="en">In the programs in Singapore and Thailand, I was asked to be a leader.</span></li>
+        <li><span lang="ja">GSL のリーダーは、大学の国際連携室の推薦を受けて務めています。</span><span lang="en">The International Office of my university recommended me as a GSL leader.</span></li>
+      </ul>
+    </div>
+  </section>
 
   <section id="semiconductor">
     <div class="wrap">
@@ -369,7 +398,27 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
           <p lang="en">A script on my PC makes an Amazon Echo in Japan speak. (<a href="https://zenn.dev/ai_daigakusei/articles/alexa-speak-from-pc-japan">article</a>)</p>
           <p class="tech">Python, Node.js</p>
         </div>
+        <div class="card wide">
+          <h3><span lang="ja">ほかの小さな道具</span><span lang="en">Other small tools</span></h3>
+          <ul class="mini">
+            <li><span lang="ja">カレンダーに「勉強」の予定がある間だけ、音楽を流して終わったら止める</span><span lang="en">Plays music only while a "study" event is on my calendar, and stops at the end</span></li>
+            <li><span lang="ja">授業が始まる前に、その回の資料と予習ノートを自動で開く</span><span lang="en">Opens the slides and my study notes for each class before it starts</span></li>
+            <li><span lang="ja">ファイルの古い版を、新しい版ができて24時間たったら毎晩ゴミ箱のフォルダへ移す</span><span lang="en">Every night, moves old versions of files to a trash folder 24 hours after a newer version appears</span></li>
+            <li><span lang="ja">2台の PC で Claude Code のスキルと設定を OneDrive 経由で共有する仕組み</span><span lang="en">Shares Claude Code skills and settings between two PCs through OneDrive</span></li>
+            <li><span lang="ja">VS Code のリンクから .docx を Word で開く拡張機能</span><span lang="en">A VS Code extension that opens .docx links in Word</span></li>
+          </ul>
+          <p class="tech">Python, PowerShell, Task Scheduler, VS Code extension</p>
+        </div>
       </div>
+
+      <p class="group-title"><span lang="ja">書いた記事（Zenn・日本語）</span><span lang="en">Articles I wrote (Zenn, in Japanese)</span></p>
+      <ul class="articles">
+        <li><a href="https://zenn.dev/ai_daigakusei/articles/claude-code-30-custom-skills"><span lang="ja">学部2年がClaude Codeに自作スキルを約30個作って大学生活を回している話（全リスト付き）</span><span lang="en">How I run my student life with about 30 Claude Code skills I wrote</span></a><span class="when">2026.06</span></li>
+        <li><a href="https://zenn.dev/ai_daigakusei/articles/claude-code-cdp-sharepoint-automation"><span lang="ja">Claude Codeで自分の授業動画から予習レポートを自動生成する</span><span lang="en">Making study notes from my lecture videos with Claude Code</span></a><span class="when">2026.04</span></li>
+        <li><a href="https://zenn.dev/ai_daigakusei/articles/no-fabricated-data-with-ai-reports"><span lang="ja">AIにレポートを書かせるとき、実験データを絶対に捏造させないために決めていること</span><span lang="en">Rules I set so that AI never invents lab data in my reports</span></a><span class="when">2026.06</span></li>
+        <li><a href="https://zenn.dev/ai_daigakusei/articles/google-calendar-desktop-widget"><span lang="ja">「今やってる？」と聞いてくる、壁紙の上のGoogleカレンダー</span><span lang="en">A Google Calendar on my wallpaper that asks "Are you doing it now?"</span></a><span class="when">2026.09</span></li>
+        <li><a href="https://zenn.dev/ai_daigakusei/articles/onedrive-cloud-only-file-python-reparsepoint"><span lang="ja">エクスプローラーには見えるのにPythonで開けない.docx ― OneDriveのクラウド専用ファイルとハイドレート</span><span lang="en">A .docx that Explorer shows but Python cannot open: OneDrive cloud-only files</span></a><span class="when">2026.09</span></li>
+      </ul>
 
       <p class="group-title"><span lang="ja">チームや授業で作ったもの</span><span lang="en">Team and class projects</span></p>
       <div class="cards">
@@ -413,10 +462,11 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
       <p class="sub" lang="ja">大学の英語プログラムや学生の団体で受け持った役割です。</p>
       <p class="sub" lang="en">Roles I have taken in university programs and student groups.</p>
       <ul class="items">
-        <li><span class="when">2025.04 –</span><div><h3><span lang="ja">GCP（Global Challenge Program、学内の英語プログラム）</span><span lang="en">GCP (Global Challenge Program, an English program at my university)</span></h3><p lang="ja">2025年12月のプロジェクト発表会で発表し、2026年6月に4期生に選ばれました。湯布院の学外研修ではプレゼンをしました。</p><p lang="en">I presented at the project presentation day in December 2025 and was selected for the 4th generation in June 2026. I gave a presentation at the off-campus training in Yufuin.</p></div></li>
+        <li><span class="when">2025.04 –</span><div><h3><span lang="ja">GCP（Global Challenge Program、学内の英語プログラム）</span><span lang="en">GCP (Global Challenge Program, an English program at my university)</span></h3><p lang="ja">2025年12月のプロジェクト発表会で発表し、2026年6月に4期生に選ばれました。湯布院の学外研修ではプレゼンをしました。2026年10月の調べ学習では、大学と企業の生成 AI の利用ルールを調べ、海外の事例を担当しています。</p><p lang="en">I presented at the project presentation day in December 2025 and was selected for the 4th generation in June 2026. I gave a presentation at the off-campus training in Yufuin. In October 2026, in a research project on rules for using generative AI at universities and companies, I am in charge of the overseas cases.</p></div></li>
         <li><span class="when">2025.09 – 2026.02</span><div><h3><span lang="ja">長期インターン（約6か月）</span><span lang="en">Long-term internship (about six months)</span></h3></div></li>
         <li><span class="when">2025.12</span><div><h3><span lang="ja">学内の英語スピーチコンテスト FIT TALKS 2025 に出場</span><span lang="en">Speaker at FIT TALKS 2025, an English speech contest at my university</span></h3><p lang="ja">FIT TALKS 2026 は上級部門にエントリーしています。</p><p lang="en">I have entered the advanced division of FIT TALKS 2026.</p></div></li>
         <li><span class="when">2026.03</span><div><h3><span lang="ja">ピアサポーター</span><span lang="en">Peer supporter</span></h3><p lang="ja">新入生オリエンテーションのスライドを作りました。</p><p lang="en">I made the slides for the new student orientation.</p></div></li>
+        <li><span class="when">2026.06 – 07</span><div><h3><span lang="ja">英語のライティング講座 FIT Write</span><span lang="en">FIT Write, an English writing course</span></h3><p lang="ja">英文の最終稿まで書き上げて提出しました。</p><p lang="en">I wrote and submitted the final draft in English.</p></div></li>
         <li><span class="when">2026.09</span><div><h3><span lang="ja">工大サミット連携 PBL（広島）</span><span lang="en">Joint PBL of technical universities (Hiroshima)</span></h3><p lang="ja">宮島の町家の使い方を班で考えて提案し、全体発表とポスター発表をしました。</p><p lang="en">My group proposed new uses for a traditional townhouse in Miyajima, and gave a presentation and a poster session.</p></div></li>
         <li><span class="when">2026</span><div><h3><span lang="ja">GSL（Global Student Leaders）リーダー</span><span lang="en">Leader, GSL (Global Student Leaders)</span></h3></div></li>
       </ul>
@@ -431,8 +481,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
     <div class="wrap">
       <p class="mark">Timeline</p>
       <h2><span lang="ja">年表</span><span lang="en">Timeline</span></h2>
-      <p class="sub" lang="ja">実際に参加した物だけを、古い順に並べています。</p>
-      <p class="sub" lang="en">Only things I actually took part in, oldest first.</p>
+      <p class="sub" lang="ja">実際に参加した物だけを、古い順に並べています。まだ先の予定は、下に分けて書いています。</p>
+      <p class="sub" lang="en">Only things I actually took part in, oldest first. Future plans are listed separately below.</p>
       <ol class="timeline">
         <li><span class="when">2025.04</span><span><span lang="ja">福岡工業大学に入学。GCP に参加</span><span lang="en">Entered Fukuoka Institute of Technology. Joined GCP</span></span></li>
         <li><span class="when">2025.06</span><span><span lang="ja">タイ KMITL から来た研修生の受け入れ</span><span lang="en">Hosted students from KMITL, Thailand</span></span></li>
@@ -449,6 +499,12 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
         <li><span class="when">2026.09</span><span><span lang="ja">工大サミット連携 PBL（広島）。韓国 昌原国立大学の gPBL</span><span lang="en">Joint PBL in Hiroshima. gPBL at Changwon National University, Korea</span></span></li>
         <li><span class="when">2026.10</span><span><span lang="ja">FIT TALKS 2026 上級部門にエントリー。claude-code-skills を公開</span><span lang="en">Entered FIT TALKS 2026 (advanced). Published claude-code-skills</span></span></li>
       </ol>
+      <h3 class="upcoming-title"><span lang="ja">これからの予定</span><span lang="en">Coming up</span></h3>
+      <ul class="items upcoming">
+        <li><span class="when">2026.10.24</span><div><h3><span lang="ja">福岡教育AI活用推進コミュニティ 公開イベント（第6回）で事例紹介の登壇</span><span lang="en">Talk at the 6th public event of the Fukuoka Education AI community</span></h3><p lang="ja">学生が AI をどう学びに使っているかを、自分の例で話します。</p><p lang="en">I will talk about how I use AI for my own learning.</p></div></li>
+        <li><span class="when">2026.12.03</span><div><h3><span lang="ja">FIT TALKS 2026 本番（上級部門）</span><span lang="en">FIT TALKS 2026 final (advanced division)</span></h3></div></li>
+      </ul>
+
     </div>
   </section>
 
