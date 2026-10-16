@@ -1,0 +1,96 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>博多ヨドバシ屋上BBQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+/* Layout: 縦線に予定を並べるだけ。予定ごとに色、今の予定に「いまここ」、場所は押すと地図 */
+:root{
+  --bg:#fbfaf8; --ink:#2b2a28; --muted:#8a8580; --line:#e7e4df; --card:#ffffff;
+  --train:#b4aea7; --shop:#b4aea7; --bbq:#c8693c; --after:#b4aea7;
+  --bbqsoft:#f6e9e1;
+  --font:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1a1918; --ink:#ecebe8; --muted:#9a958f; --line:#34322f; --card:#232220;
+  --train:#6b6661; --shop:#6b6661; --bbq:#e08a5f; --after:#6b6661;
+  --bbqsoft:#3a2a22; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1a1918; --ink:#ecebe8; --muted:#9a958f; --line:#34322f; --card:#232220;
+  --train:#6b6661; --shop:#6b6661; --bbq:#e08a5f; --after:#6b6661;
+  --bbqsoft:#3a2a22; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:520px;margin:0 auto;padding-inline:16px;padding-block:28px 48px}
+h1{font-size:1.4rem;margin:0;font-weight:700;letter-spacing:.02em}
+.date{color:var(--muted);margin:2px 0 28px}
+p{margin:0}
+
+.list{list-style:none;margin:0;padding:0}
+.item{--c:var(--muted);position:relative;padding:0 0 28px 32px}
+.item:last-child{padding-bottom:0}
+.item::after{content:"";position:absolute;left:8px;top:24px;bottom:0;width:2px;background:var(--line)}
+.item:last-child::after{display:none}
+.item::before{content:"";position:absolute;left:1px;top:7px;width:16px;height:16px;border-radius:50%;background:var(--c)}
+.time{font-weight:500;font-size:.9rem;letter-spacing:.03em;font-variant-numeric:tabular-nums}
+.bbq .time,.cur .time{color:var(--c)}
+.what{font-weight:500;font-size:1.05rem}
+.place{display:inline-block;margin-top:2px;font-size:.92rem;color:var(--bbq);text-decoration:none;border-bottom:1px solid currentColor}
+.place:focus-visible{outline:2px solid var(--c);outline-offset:2px}
+.sub{color:var(--muted);font-size:.92rem;white-space:pre-line}
+.train{--c:var(--train)} .shop{--c:var(--shop)} .bbq{--c:var(--bbq)} .after{--c:var(--after)}
+.bbq .what{display:inline-block;background:var(--bbqsoft);padding:0 6px;border-radius:4px}
+.item.done{opacity:.4}
+.item.cur{--c:var(--bbq)}
+.item.cur::before{box-shadow:0 0 0 5px var(--card),0 0 0 7px var(--c)}
+.tag{display:inline-block;margin-left:8px;font-size:.75rem;font-weight:bold;color:#fff;background:var(--c);border-radius:999px;padding:1px 9px;vertical-align:2px}
+.item.wait{--c:var(--ink);font-weight:bold}
+.item.wait .sub{font-weight:normal}
+
+.note{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;font-size:.95rem}
+</style>
+</head><body style="margin:0">
+
+<div class="wrap">
+  <h1>博多ヨドバシ屋上BBQ</h1>
+  <p class="date">10/16（金）・10人</p>
+
+  <ol class="list" id="list"></ol>
+
+  <div class="note">
+    <p>5限ある人は買い出し来なくて大丈夫。18時から合流してね。</p>
+    <p>自分は4限終わってから行きます。</p>
+  </div>
+</div>
+
+<script>
+const MAP_LOPIA = 'https://maps.google.com/?q=Lopia+Yodobashi+Hakata';
+const MAP_BBQ = 'https://maps.google.com/?q=Grillpia+Yodobashi+Hakata';
+const EVENTS = [
+  {s:'16:30', e:'17:00', t:'福工大から電車で博多へ', sub:'16:30発 普通（鳥栖行き）→ 博多 16:50ごろ着・340円\n乗り遅れたら 16:45発 区間快速（17:02ごろ着）\n博多駅の筑紫口を出たらヨドバシはすぐ', cls:'train'},
+  {s:'17:00', e:'18:00', t:'ロピアで買い出し', place:'ヨドバシ博多 4階のロピア', map:MAP_LOPIA, sub:'ロピアの入口で待ち合わせ\n17時ごろ来れる人はLINEでリアクションしてね', cls:'shop'},
+  {s:'18:00', e:'22:00', label:'18:00〜22:00', t:'BBQ ここで全員集合！', place:'屋上のグリルピア ヨドバシ博多', map:MAP_BBQ, cls:'bbq'}];
+const toMin = s => { const [h, m] = s.split(':').map(Number); return h * 60 + m; };
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; }
+function render() {
+  const d = new Date(), m = d.getHours() * 60 + d.getMinutes();
+  const hm = d.getHours() + ':' + String(d.getMinutes()).padStart(2, '0');
+  const list = document.getElementById('list'); list.textContent = '';
+  if (m < toMin(EVENTS[0].s)) {
+    const left = toMin(EVENTS[0].s) - m;
+    const li = el('li', 'item wait cur');
+    li.append(el('div', 'time', 'いま ' + hm), el('div', 'sub', '出発まであと ' + (left >= 60 ? Math.floor(left / 60) + '時間' : '') + (left % 60) + '分'));
+    list.appendChild(li);
+  }
+  EVENTS.forEach(ev => {
+    const a = toMin(ev.s), z = toMin(ev.e), on = m >= a && m < z;
+    const li = el('li', 'item ' + ev.cls + (m >= z ? ' done' : '') + (on ? ' cur' : ''));
+    const t = el('div', 'time', ev.label || ev.s + '〜');
+    if (on) t.appendChild(el('span', 'tag', 'いまここ'));
+    li.append(t, el('div', 'what', ev.t));
+    if (ev.place) { const a2 = el('a', 'place', ev.place + ' →'); a2.href = ev.map; a2.target = '_blank'; a2.rel = 'noopener'; li.appendChild(el('div')).appendChild(a2); }
+    if (ev.sub) li.appendChild(el('div', 'sub', ev.sub));
+    list.appendChild(li);
+  });
+}
+render(); setInterval(render, 30000);
+</script>
+</body></html>
