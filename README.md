@@ -1,49 +1,69 @@
-# こんにちは、林 琥珀 (Kohaku Hayashi) です 👋
+# 林 琥珀 / Kohaku Hayashi
 
-福岡工業大学 工学部 電子情報工学科 / 半導体・AI・国際交流に興味があります。
+福岡工業大学 工学部 電子情報工学科の2年生です（2025年入学）。
+半導体の学外プログラムや海外研修に参加しながら、Claude Code で大学生活の道具を作って自分で使っています。
+作ったスキルの一部は [claude-code-skills](https://github.com/kohaku-hys/claude-code-skills) で公開していて、その作り方は [Zenn](https://zenn.dev/ai_daigakusei) に書いています。
 
-## 🎓 About Me
+## 作った物
 
-- 🏫 福岡工業大学 工学部 電子情報工学科（2025年入学）
-- 🌏 GCP (Global Challenge Program) 2025 / GSL (Global Student Leaders) リーダー
-- 🎤 YAPC::Tokyo 2026 Core Staff
-- 🤝 福岡工業大学内 ピアサポーター・ピアラーニング メンター
+### 公開しているもの
 
-## 🛠️ Tech Stack
+| 名前 | 何をするか | 技術 |
+| --- | --- | --- |
+| [claude-code-skills](https://github.com/kohaku-hys/claude-code-skills) | Claude Code のスキル24個と、スキルから呼ぶエージェント13体。実験レポート（Word）、編集できるスライド、議事録、ES、メールなどを、確認の質問から仕上げの検査まで同じ手順で作る | Markdown, Python |
 
-- **メイン**: Claude Code を使った開発
-- **言語**: Python / C（授業）
+### 自分の PC で動かしているもの（コードは非公開）
 
-## 🚀 Projects
+| 名前 | 何をするか | 技術 |
+| --- | --- | --- |
+| 壁紙の上の Google カレンダー | 週の予定を壁紙の上に出し、予定の10分前に「今やってる？」と聞く（[記事](https://zenn.dev/ai_daigakusei/articles/google-calendar-desktop-widget)） | Python (tkinter), Google Apps Script |
+| Telegram の双方向 bot | スマホのボタンで PC のファイル整理を承認したり、メモや質問を PC の Claude に送ったりする | Python, Telegram Bot API, Claude Code CLI |
+| Telegram から Claude Code を操作するブリッジ | VS Code で動いている Claude Code に外から指示を送り、Claude からの質問にもそこからボタンで答える | Python, Claude Code hooks |
+| タスクバーを歩くクロードくん | Claude Code の会話ログを読んで動くマスコット。集中タイマーと締切の旗が付いている | Python (tkinter, Pillow) |
+| 授業のリアルタイム文字起こし | 対面授業の音声を手元の PC で文字にし、3分ごとに専門用語の解説を挟む。時間割を見て授業中だけ動く | Python, faster-whisper |
+| 授業動画から予習レポート | 授業動画を Chrome DevTools Protocol で取り込み、数式入りの Word の予習レポートにする（[記事](https://zenn.dev/ai_daigakusei/articles/claude-code-cdp-sharepoint-automation)） | Python, python-docx |
+| PC から Echo をしゃべらせる | PC のスクリプトから日本の Amazon Echo に話させる（[記事](https://zenn.dev/ai_daigakusei/articles/alexa-speak-from-pc-japan)） | Python, Node.js |
 
-### 🤖 Discord Bot (Personal Project)
+### チームや授業で作ったもの
 
-Python 製の個人用 Discord Bot。タスク管理・Google Calendar 連携・Claude API 連携などを実装。
+| 名前 | 何をするか | 技術 |
+| --- | --- | --- |
+| Q-Trip（Q-Quest GROW、4人チーム） | 焼きなまし法で巡回セールスマン問題を解き、九州の旅行ルートを組む Web アプリ。DEMODAY ではこのアプリで福岡市を回るシミュレーション動画を発表した | Next.js, TypeScript |
+| エンドレス シューティングゲーム（授業のチーム制作） | 縦スクロールのシューティングゲーム。チームのリーダーとして main の部分を書いた | C++, DxLib |
+| AI 電子鼻の測定キット（台湾での国際 PBL） | ガスセンサの値を段階ごとに記録し、それをグラフにする | Arduino, Python |
+| 学習管理の Discord bot（個人。2026年6月に運用を終了） | ポモドーロ、タスク管理、Google Calendar 連携、Claude API の応答を1つにまとめた bot | Python, discord.py, SQLite |
 
-### 🗺️ Q-Trip (Q-Quest GROW 2025-2026)
+## 半導体
 
-量子アニーリングを活用した九州旅行最適化サービス。
+- 九州大学 価値創造型半導体人材育成センターのプログラムを3つ修了しました
+  - 高周波デバイス計測セミナー（2025年9月）
+  - プロセス・デバイスシミュレーション実習（2025年9月、TCAD）
+  - 集積回路設計・評価ハンズオンセミナー（2025年9月〜2026年3月、設計から試作チップの測定まで）
+- 半導体設計ゲーム「THE GAME」（IBM 九州DXセンター、2025年11月）
 
-- 巡回セールスマン問題（TSP）+ 焼きなまし法
-- エネルギー関数の設計
-- 福岡市シミュレーション動画を DEMODAY で発表
+## 海外での研修・交流
 
-## 🌐 International Experience
+- タイ KMITL 短期派遣研修（2026年2月、約2週間）
+- シンガポール SAIL Program（2026年3月、テマセク・ポリテクニック）
+- 台湾 国立宜蘭大学との国際 PBL「AI 電子鼻」（2026年8月、英語で最終発表）
+- 韓国 昌原国立大学の gPBL（2026年9月、英語で成果発表）
+- 台湾 亜洲大学の学生との交流会（2025年8月）
 
-- 🇹🇭 KMITL タイ短期派遣研修（2026/2）— Koito・Yaskawa インターンシップ
-- 🇸🇬 Singapore SAIL Program 2025 — 福岡NOWプレゼン発表
-- 🇹🇼 亜洲大学・雲林科技大学 学生交流
+## 学内の活動
 
-## 🏆 Awards / Competitions
+- GCP（Global Challenge Program、学内の英語プログラム）に参加し、2026年6月に4期生に選ばれました
+- GSL（Global Student Leaders）リーダー
+- ピアサポーター（2026年3月の新入生オリエンテーションのスライドを作成）
+- 工大サミット連携 PBL（広島、2026年9月。全体発表とポスター発表）
+- 学内の英語スピーチコンテスト FIT TALKS 2025 に出場。FIT TALKS 2026 は上級部門にエントリーしています
 
-- 九州大学 試作チップ測定会 **修了証取得**
-- 半導体設計ゲーム THE GAME（IBM九州DXセンター）
+## 使っている技術
 
-## 📫 Contact
+- よく使う: Python, Claude Code
+- 授業やチームで使った: C / C++ (DxLib), TypeScript (Next.js), Arduino, Raspberry Pi
+- 半導体の実習で使った: TCAD, KLayout
 
-- 📧 <khk589go@gmail.com>
+## 連絡先
 
----
-
-![Kohaku's GitHub stats](https://github-readme-stats.vercel.app/api?username=kohaku-hys&show_icons=true&theme=default)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=kohaku-hys&layout=compact&theme=default)
+- Mail: <khk589go@gmail.com>
+- Zenn: <https://zenn.dev/ai_daigakusei>
