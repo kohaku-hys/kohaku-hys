@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="ja" data-lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>林 琥珀 | Kohaku Hayashi</title>
+<meta name="description" content="福岡工業大学 電子情報工学科2年 林 琥珀のポートフォリオ。半導体のプログラム、海外での研修、Claude Code で作った道具。">
+<meta property="og:title" content="林 琥珀 | Kohaku Hayashi">
+<meta property="og:description" content="半導体のプログラム、海外での研修、Claude Code で作った道具。">
+<meta property="og:image" content="https://kohaku-hys.github.io/kohaku-hys/assets/img/chip-and-coin.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+JP:wght@400;500;700&display=swap">
+<style>
+/* layout: one column like a die photo; thin grid in the header, copper accent for wiring, mono labels like chip markings */
+:root {
+  --bg: #f3f5f6;
+  --surface: #ffffff;
+  --fg: #17212b;
+  --muted: #586572;
+  --line: #d6dde3;
+  --grid: rgba(23, 33, 43, 0.06);
+  --accent: #a9532a;
+  --accent-soft: #f4e4da;
+  --font-body: "IBM Plex Sans JP", "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
+  --font-mono: "IBM Plex Mono", "Consolas", "Menlo", monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1418; --surface: #161d23; --fg: #e5ebef; --muted: #98a6b2; --line: #28333c;
+    --grid: rgba(229, 235, 239, 0.05); --accent: #e3925f; --accent-soft: #3a2619; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1418; --surface: #161d23; --fg: #e5ebef; --muted: #98a6b2; --line: #28333c;
+  --grid: rgba(229, 235, 239, 0.05); --accent: #e3925f; --accent-soft: #3a2619; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.8;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* 言語の切り替え */
+html[data-lang="ja"] [lang="en"] { display: none !important; }
+html[data-lang="en"] [lang="ja"] { display: none !important; }
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* 上の帯 */
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 10px; }
+.bar nav { display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px; }
+.bar nav a { color: var(--muted); text-decoration: none; }
+.bar nav a:hover { color: var(--fg); }
+.langs { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; flex: none; }
+.langs button {
+  font: 500 13px var(--font-mono);
+  padding: 4px 10px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+.langs button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+
+/* 冒頭 */
+.hero {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+  border-bottom: 1px solid var(--line);
+}
+.hero .wrap { padding-block: 56px 44px; display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 40px; align-items: end; }
+.mark { font: 500 12px var(--font-mono); letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin: 0 0 12px; }
+h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.2; margin: 0 0 8px; font-weight: 700; text-wrap: balance; }
+h1 .roman { display: block; font: 500 15px var(--font-mono); letter-spacing: 0.08em; color: var(--muted); margin-top: 6px; }
+.lead { font-size: 17px; max-width: 38em; margin: 20px 0 0; }
+.goal {
+  margin: 22px 0 0;
+  padding: 14px 16px;
+  border-left: 3px solid var(--accent);
+  background: var(--surface);
+  max-width: 38em;
+}
+.goal small { display: block; font: 500 12px var(--font-mono); letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.links a {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--surface); color: var(--fg); text-decoration: none; font-size: 14px;
+}
+.links a:hover { border-color: var(--accent); }
+.hero figure { margin: 0; }
+.hero figure img { border-radius: 8px; aspect-ratio: 3 / 4; object-fit: cover; width: 100%; }
+.hero figcaption { font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+/* 節 */
+section { padding-block: 56px; border-bottom: 1px solid var(--line); }
+section:last-of-type { border-bottom: 0; }
+h2 { font-size: 26px; line-height: 1.35; margin: 0 0 6px; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0 0 28px; max-width: 40em; }
+h3 { font-size: 17px; margin: 0 0 4px; line-height: 1.5; }
+
+.items { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; max-width: 46em; }
+.items li { display: grid; grid-template-columns: 8.5em minmax(0, 1fr); gap: 4px 16px; }
+.when { font: 400 13px/1.9 var(--font-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.items p { margin: 0; color: var(--muted); font-size: 15px; }
+
+/* 写真 */
+.photos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 32px; }
+.photos figure { margin: 0; min-width: 0; }
+.photos img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 6px; background: var(--line); }
+.photos figcaption { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
+
+/* 作った物 */
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; min-width: 0; }
+.card.feature { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: center; }
+.card p { margin: 6px 0 0; font-size: 15px; color: var(--muted); }
+.tag { display: inline-block; font: 500 11px var(--font-mono); letter-spacing: 0.06em; padding: 2px 8px; border-radius: 4px; background: var(--accent-soft); color: var(--accent); margin-bottom: 8px; }
+.tech { font: 400 12px var(--font-mono); color: var(--muted); margin-top: 10px; }
+.shots { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }
+.shots img { border-radius: 6px; border: 1px solid var(--line); }
+.group-title { font: 500 12px var(--font-mono); letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin: 36px 0 12px; }
+.group-title:first-child { margin-top: 0; }
+
+/* 年表 */
+.timeline { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); max-width: 48em; }
+.timeline li { position: relative; padding: 0 0 18px 22px; display: grid; grid-template-columns: 6.5em minmax(0, 1fr); gap: 2px 14px; }
+.timeline li::before { content: ""; position: absolute; left: -6px; top: 9px; width: 10px; height: 10px; border-radius: 2px; background: var(--surface); border: 2px solid var(--accent); }
+
+/* 連絡先 */
+.contact { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.mail { font: 500 16px var(--font-mono); padding: 8px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; user-select: all; }
+.copy { font: 500 13px var(--font-body); padding: 8px 12px; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: var(--fg); cursor: pointer; }
+footer { color: var(--muted); font-size: 13px; padding-block: 28px 40px; }
+
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); }
+  .hero figure { max-width: 260px; }
+  .photos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cards, .card.feature { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .bar nav { display: none; }
+  .items li, .timeline li { grid-template-columns: minmax(0, 1fr); }
+  section { padding-block: 44px; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <nav aria-label="sections">
+      <a href="#semiconductor"><span lang="ja">半導体</span><span lang="en">Semiconductors</span></a>
+      <a href="#global"><span lang="ja">海外</span><span lang="en">Global</span></a>
+      <a href="#build"><span lang="ja">作った物</span><span lang="en">Things I built</span></a>
+      <a href="#campus"><span lang="ja">学内外の活動</span><span lang="en">Activities</span></a>
+      <a href="#timeline"><span lang="ja">年表</span><span lang="en">Timeline</span></a>
+      <a href="#contact"><span lang="ja">連絡先</span><span lang="en">Contact</span></a>
+    </nav>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" id="btn-ja" data-set-lang="ja" aria-pressed="true">日本語</button>
+      <button type="button" id="btn-en" data-set-lang="en" aria-pressed="false">English</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="mark">Portfolio / 2026</p>
+        <h1><span lang="ja">林 琥珀</span><span lang="en">Kohaku Hayashi</span>
+          <span class="roman" lang="ja">Kohaku Hayashi</span><span class="roman" lang="en">林 琥珀</span></h1>
+        <p class="lead" lang="ja">福岡工業大学 工学部 電子情報工学科の2年生です（2025年入学）。半導体の学外プログラムや海外での研修に参加しながら、Claude Code で大学生活の道具を作って自分で使っています。</p>
+        <p class="lead" lang="en">I am a second-year student in the Department of Electronics and Information Engineering at Fukuoka Institute of Technology (entered in 2025). I take part in semiconductor programs outside my university and in study-abroad programs. I also build my own tools for student life with Claude Code and use them myself.</p>
+        <div class="goal">
+          <small><span lang="ja">目指していること</span><span lang="en">My goal</span></small>
+          <span lang="ja">海外の人とも一緒に仕事ができる、半導体のエンジニアになることです。</span>
+          <span lang="en">To become a semiconductor engineer who can work with people from other countries.</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/kohaku-hys/claude-code-skills">GitHub: claude-code-skills</a>
+          <a href="https://zenn.dev/ai_daigakusei"><span lang="ja">Zenn の記事</span><span lang="en">Articles on Zenn (Japanese)</span></a>
+          <a href="#contact"><span lang="ja">連絡先</span><span lang="en">Contact</span></a>
+        </div>
+      </div>
+      <figure>
+        <img src="assets/img/me-with-chip.jpg" alt="試作チップを手に持つ林 琥珀" width="1050" height="1400">
+        <figcaption><span lang="ja">試作チップを受け取った日（2026年3月、九州大学）</span><span lang="en">The day I received my prototype chip (March 2026, Kyushu University)</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <section id="semiconductor">
+    <div class="wrap">
+      <p class="mark">Semiconductors</p>
+      <h2><span lang="ja">半導体</span><span lang="en">Semiconductors</span></h2>
+      <p class="sub" lang="ja">チップを設計し、そのチップの試作品を自分の手で測るところまで、学外のプログラムで体験してきました。</p>
+      <p class="sub" lang="en">Through programs outside my university, I have designed a chip and tested the prototype with my own hands.</p>
+      <ul class="items">
+        <li>
+          <span class="when">2025.09 – 2026.03</span>
+          <div>
+            <h3><span lang="ja">九州大学 価値創造型半導体人材育成センターのプログラムを3つ修了</span><span lang="en">Completed three programs at the Kyushu University semiconductor talent center</span></h3>
+            <p lang="ja">高周波デバイス計測セミナーでは、回路をシミュレーションで設計し、はんだ付けで組み立てて評価しました。プロセス・デバイスシミュレーション実習のテーマは、TCAD を使ったトランジスタ（FinFET）の形の設計です。集積回路設計・評価ハンズオンセミナーでは、回路を設計し、約半年後に届いた試作チップ（1円玉より小さい）をブレッドボードにつないで、その動作を確かめました。</p>
+            <p lang="en">High-frequency device measurement: I designed a circuit in simulation, soldered it, and measured it. Process and device simulation: I designed the shape of a FinFET transistor with TCAD. IC design and evaluation: I designed a circuit, and about six months later I received the prototype chip (smaller than a 1-yen coin) and tested it on a breadboard.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">2025.11</span>
+          <div>
+            <h3><span lang="ja">半導体設計ゲーム「THE GAME」（IBM 九州DXセンター）</span><span lang="en">Semiconductor design game "THE GAME" (IBM Kyushu DX Center)</span></h3>
+            <p lang="ja">カードを使って、チームでロボット用のチップを予算と大きさを考えながら設計しました。小さなチップを組み合わせるチップレットの考え方を体験しました。</p>
+            <p lang="en">With cards, my team designed a chip for a robot while thinking about budget and size. I learned the idea of chiplets, where small chips are combined into one.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">2026.04</span>
+          <div>
+            <h3><span lang="ja">在福岡米国領事館セミナー「日本の半導体ルネサンス」に参加</span><span lang="en">Attended the U.S. Consulate Fukuoka seminar on Japan's semiconductor renaissance</span></h3>
+          </div>
+        </li>
+        <li>
+          <span class="when">2026.08</span>
+          <div>
+            <h3><span lang="ja">台湾 雲林科技大学 半導体サマーキャンプを修了</span><span lang="en">Completed a semiconductor summer camp at National Yunlin University of Science and Technology, Taiwan</span></h3>
+            <p lang="ja">TSMC の博物館や ITRI（工業技術研究院）を見学し、Arduino の実習に取り組みました。</p>
+            <p lang="en">We visited the TSMC Museum of Innovation and ITRI, and worked on Arduino lessons.</p>
+          </div>
+        </li>
+      </ul>
+      <div class="photos">
+        <figure><img src="assets/img/chip-and-coin.jpg" alt="ケースに入った小さな試作チップと1円玉" loading="lazy" width="1050" height="1400"><figcaption><span lang="ja">試作チップと1円玉</span><span lang="en">The prototype chip and a 1-yen coin</span></figcaption></figure>
+        <figure><img src="assets/img/chip-layout.jpg" alt="パソコンに表示したチップのレイアウト" loading="lazy" width="787" height="1400"><figcaption><span lang="ja">KLayout で見たチップのレイアウト</span><span lang="en">Chip layout in KLayout</span></figcaption></figure>
+        <figure><img src="assets/img/chip-test-board.jpg" alt="チップのソケットとブレッドボードの配線" loading="lazy" width="1050" height="1400"><figcaption><span lang="ja">ブレッドボードで動作を確かめる</span><span lang="en">Testing the chip on a breadboard</span></figcaption></figure>
+        <figure><img src="assets/img/ic-seminar-sign.jpg" alt="集積回路設計・評価ハンズオンセミナーの掲示" loading="lazy" width="1050" height="1400"><figcaption><span lang="ja">集積回路設計・評価ハンズオンセミナー（九州大学）</span><span lang="en">IC design and evaluation seminar (Kyushu University)</span></figcaption></figure>
+        <figure><img src="assets/img/tsmc-logo.jpg" alt="TSMC のロゴの看板" loading="lazy" width="960" height="1280"><figcaption><span lang="ja">TSMC の博物館（台湾）</span><span lang="en">TSMC Museum of Innovation (Taiwan)</span></figcaption></figure>
+        <figure><img src="assets/img/me-at-tsmc-museum.jpg" alt="TSMC の博物館の前に立つ林 琥珀" loading="lazy" width="960" height="1280"><figcaption><span lang="ja">見学の日（2026年8月）</span><span lang="en">On the visit (August 2026)</span></figcaption></figure>
+        <figure><img src="assets/img/itri-sign.jpg" alt="ITRI の看板" loading="lazy" width="960" height="1280"><figcaption><span lang="ja">ITRI（台湾の工業技術研究院）</span><span lang="en">ITRI, Taiwan</span></figcaption></figure>
+        <figure><img src="assets/img/arduino-lab.jpg" alt="実習室の机に置かれた Arduino の回路とパソコン" loading="lazy" width="960" height="1280"><figcaption><span lang="ja">Arduino の実習（雲林科技大学）</span><span lang="en">Arduino lesson (Yunlin University of Science and Technology)</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="global">
+    <div class="wrap">
+      <p class="mark">Global</p>
+      <h2><span lang="ja">海外での研修・交流</span><span lang="en">Study abroad and international exchange</span></h2>
+      <p class="sub" lang="ja">入学してから、タイ・シンガポール・台湾・韓国の研修に参加しました。台湾と韓国の PBL では、チームの成果を英語で発表しています。</p>
+      <p class="sub" lang="en">Since entering university, I have joined programs in Thailand, Singapore, Taiwan, and Korea. In the PBL programs in Taiwan and Korea, I presented our team's results in English.</p>
+      <ul class="items">
+        <li><span class="when">2025.06</span><div><h3><span lang="ja">タイ KMITL から来た研修生の受け入れ</span><span lang="en">Hosting students from KMITL, Thailand</span></h3><p lang="ja">空港の出迎えや、湯布院・太宰府、北九州の視察に同行しました。</p><p lang="en">I joined the airport welcome and the field trips to Yufuin, Dazaifu, and Kitakyushu.</p></div></li>
+        <li><span class="when">2025.08</span><div><h3><span lang="ja">台湾 亜洲大学の学生との交流会</span><span lang="en">Exchange event with students from Asia University, Taiwan</span></h3></div></li>
+        <li><span class="when">2026.02</span><div><h3><span lang="ja">タイ KMITL 短期派遣研修（約2週間）</span><span lang="en">Short-term program at KMITL, Thailand (about two weeks)</span></h3><p lang="ja">面接での選考と事前研修を経て参加し、帰国後の報告会で発表しました。</p><p lang="en">I was selected through an interview, took the pre-training, and presented at the report meeting after I came back.</p></div></li>
+        <li><span class="when">2026.03</span><div><h3><span lang="ja">シンガポール SAIL Program</span><span lang="en">SAIL Program, Singapore</span></h3><p lang="ja">フィリピン・セブの CPILS でオンライン留学を3週間受けたあと、テマセク・ポリテクニックで1週間学びました。事前課題では「福岡 NOW」を英語でグループ発表しました。</p><p lang="en">Three weeks of online English study with CPILS (Cebu, Philippines), then one week at Temasek Polytechnic. Before the trip, my group gave an English presentation, "Fukuoka NOW".</p></div></li>
+        <li><span class="when">2026.08</span><div><h3><span lang="ja">台湾 国立宜蘭大学との国際 PBL「AI 電子鼻」</span><span lang="en">International PBL with National Ilan University, Taiwan: "AI Electronic Nose"</span></h3><p lang="ja">ガスセンサで飲み物の香りを測り、そのデータを AI で分類しました。測定と記録の道具は自分で作り、最終発表は英語で行いました。</p><p lang="en">We measured the smell of drinks with gas sensors and classified the data with AI. I built the measurement and logging tools myself. The final presentation was in English.</p></div></li>
+        <li><span class="when">2026.08</span><div><h3><span lang="ja">台湾 雲林科技大学 半導体サマーキャンプ</span><span lang="en">Semiconductor summer camp, Yunlin, Taiwan</span></h3><p lang="ja">「半導体」の節を見てください。</p><p lang="en">See the Semiconductors section.</p></div></li>
+        <li><span class="when">2026.09</span><div><h3><span lang="ja">韓国 昌原国立大学の gPBL</span><span lang="en">gPBL at Changwon National University, Korea</span></h3><p lang="ja">産業廃棄物から作った活性炭で蓄電デバイスを試作し、企業2社を訪問したうえで、その成果を英語で発表しました。</p><p lang="en">We made an energy storage device from activated carbon made from industrial waste, visited two companies, and presented the results in English.</p></div></li>
+      </ul>
+      <div class="photos">
+        <figure><img src="assets/img/carbon-battery-fan.jpg" alt="手作りの蓄電デバイスにつないだ小さなファン" loading="lazy" width="960" height="1280"><figcaption><span lang="ja">活性炭の蓄電デバイスでファンを回した（韓国）</span><span lang="en">A fan running on our activated-carbon device (Korea)</span></figcaption></figure>
+        <figure><img src="assets/img/incineration-plant.jpg" alt="青空の下の工場と煙突" loading="lazy" width="960" height="1280"><figcaption><span lang="ja">企業訪問（韓国）</span><span lang="en">Company visit (Korea)</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="build">
+    <div class="wrap">
+      <p class="mark">Things I built</p>
+      <h2><span lang="ja">作った物</span><span lang="en">Things I built</span></h2>
+      <p class="sub" lang="ja">自分の困りごとを、Claude Code と Python で道具にしています。作り方の一部は Zenn に記事として書いています。</p>
+      <p class="sub" lang="en">I turn my own problems into tools with Claude Code and Python. I write about some of them on Zenn (in Japanese).</p>
+
+      <p class="group-title"><span lang="ja">公開しているもの</span><span lang="en">Open source</span></p>
+      <div class="cards">
+        <div class="card">
+          <span class="tag">GitHub / MIT</span>
+          <h3><a href="https://github.com/kohaku-hys/claude-code-skills">claude-code-skills</a></h3>
+          <p lang="ja">Claude Code のスキル24個と、スキルから呼ぶエージェント13体。実験レポート（Word）、編集できるスライド、議事録、ES、メールなどを、確認の質問から仕上げの検査まで同じ手順で作ります。</p>
+          <p lang="en">24 Claude Code skills and 13 agents, written in Japanese. They make lab reports (Word), editable slides, meeting notes, job applications, and emails with the same steps, from questions at the start to checks at the end.</p>
+          <p class="tech">Markdown, Python</p>
+        </div>
+        <div class="card">
+          <span class="tag">Zenn</span>
+          <h3><a href="https://zenn.dev/ai_daigakusei"><span lang="ja">技術記事 10本</span><span lang="en">10 technical articles</span></a></h3>
+          <p lang="ja">授業動画から予習レポートを作る方法、自作スキルの作り方、AI にレポートを手伝わせても実験データを捏造させない決めごと、などを書いています。</p>
+          <p lang="en">Topics include making study notes from lecture videos, writing Claude Code skills, and rules to stop AI from inventing lab data.</p>
+        </div>
+      </div>
+
+      <p class="group-title"><span lang="ja">自分の PC で動かしているもの（コードは非公開）</span><span lang="en">Tools I run on my own PC (code not public)</span></p>
+      <div class="cards">
+        <div class="card feature">
+          <div>
+            <span class="tag">Python / Google Apps Script</span>
+            <h3><span lang="ja">壁紙の上の Google カレンダー</span><span lang="en">Google Calendar on my desktop wallpaper</span></h3>
+            <p lang="ja">今週の予定を壁紙の上に出し、予定の10分前に「今やってる？」と聞きます。答えのボタンで、その予定を明日に回したり、時間をずらしたりできます。（<a href="https://zenn.dev/ai_daigakusei/articles/google-calendar-desktop-widget">記事</a>）</p>
+            <p lang="en">It shows this week's schedule on the wallpaper and asks "Are you doing it now?" ten minutes before each event. With the buttons I can move the event to tomorrow or shift the time. (<a href="https://zenn.dev/ai_daigakusei/articles/google-calendar-desktop-widget">article</a>)</p>
+            <p class="tech"><span lang="ja">画面の予定は見本です</span><span lang="en">The events in the screenshots are samples.</span></p>
+          </div>
+          <div class="shots">
+            <img src="assets/img/calendar-widget.png" alt="壁紙の上に出た週の予定と締切" loading="lazy" width="450" height="800">
+            <img src="assets/img/calendar-ask.png" alt="今やってる？と聞く画面とボタン" loading="lazy" width="377" height="365">
+          </div>
+        </div>
+        <div class="card">
+          <h3><span lang="ja">Telegram の双方向 bot</span><span lang="en">Two-way Telegram bot</span></h3>
+          <p lang="ja">スマホのボタンで PC のファイル整理を承認したり、メモや質問を PC の Claude に送ったりします。</p>
+          <p lang="en">From my phone I approve file sorting on my PC and send notes and questions to Claude on my PC.</p>
+          <p class="tech">Python, Telegram Bot API, Claude Code CLI</p>
+        </div>
+        <div class="card">
+          <h3><span lang="ja">Telegram から Claude Code を操作するブリッジ</span><span lang="en">Telegram bridge for Claude Code</span></h3>
+          <p lang="ja">VS Code で動いている Claude Code に外から指示を送り、Claude からの質問にもそこからボタンで答えます。</p>
+          <p lang="en">I send instructions to Claude Code running in VS Code while I am away, and answer its questions with buttons.</p>
+          <p class="tech">Python, Claude Code hooks</p>
+        </div>
+        <div class="card">
+          <h3><span lang="ja">授業のリアルタイム文字起こし</span><span lang="en">Live transcription for lectures</span></h3>
+          <p lang="ja">対面授業の音声を手元の PC で文字にし、3分ごとに専門用語の解説を挟みます。時間割を見て、授業中だけ動きます。</p>
+          <p lang="en">It turns lecture audio into text on my PC and adds short explanations of technical terms every three minutes. It runs only during class, based on my timetable.</p>
+          <p class="tech">Python, faster-whisper</p>
+        </div>
+        <div class="card">
+          <h3><span lang="ja">タスクバーを歩くクロードくん</span><span lang="en">A mascot walking on my taskbar</span></h3>
+          <p lang="ja">Claude Code の作業の様子を読んで動くマスコットです。集中タイマーと締切の旗が付いています。</p>
+          <p lang="en">A small mascot that moves based on what Claude Code is doing, with a focus timer and deadline flags.</p>
+          <p class="tech">Python (tkinter, Pillow)</p>
+        </div>
+        <div class="card">
+          <h3><span lang="ja">授業動画から予習レポート</span><span lang="en">Study notes from lecture videos</span></h3>
+          <p lang="ja">授業動画を Chrome DevTools Protocol で取り込み、数式入りの Word の予習レポートにします。（<a href="https://zenn.dev/ai_daigakusei/articles/claude-code-cdp-sharepoint-automation">記事</a>）</p>
+          <p lang="en">It captures lecture videos with the Chrome DevTools Protocol and makes Word study notes with equations. (<a href="https://zenn.dev/ai_daigakusei/articles/claude-code-cdp-sharepoint-automation">article</a>)</p>
+          <p class="tech">Python, python-docx</p>
+        </div>
+        <div class="card">
+          <h3><span lang="ja">PC から Echo をしゃべらせる</span><span lang="en">Making Amazon Echo speak from my PC</span></h3>
+          <p lang="ja">PC のスクリプトから、日本の Amazon Echo に話させます。（<a href="https://zenn.dev/ai_daigakusei/articles/alexa-speak-from-pc-japan">記事</a>）</p>
+          <p lang="en">A script on my PC makes an Amazon Echo in Japan speak. (<a href="https://zenn.dev/ai_daigakusei/articles/alexa-speak-from-pc-japan">article</a>)</p>
+          <p class="tech">Python, Node.js</p>
+        </div>
+      </div>
+
+      <p class="group-title"><span lang="ja">チームや授業で作ったもの</span><span lang="en">Team and class projects</span></p>
+      <div class="cards">
+        <div class="card feature">
+          <div>
+            <span class="tag"><span lang="ja">4人チーム</span><span lang="en">Team of 4</span></span>
+            <h3>Q-Trip（Q-Quest GROW 2025）</h3>
+            <p lang="ja">焼きなまし法で巡回セールスマン問題を解き、九州の旅行ルートを組む Web アプリです。量子コンピュータの人材育成プログラムの中で約半年かけて作り、2026年2月の DEMODAY で、このアプリで福岡市を回るシミュレーション動画を発表しました。</p>
+            <p lang="en">A web app that plans travel routes in Kyushu by solving the traveling salesman problem with simulated annealing. We built it over about six months in a quantum computing talent program and showed a simulation video of a trip around Fukuoka City at DEMODAY in February 2026.</p>
+            <p class="tech">Next.js, TypeScript</p>
+          </div>
+          <img src="assets/img/qquest-banner.jpg" alt="Q-Quest GROW の会場のバナー" loading="lazy" width="1050" height="1400" style="max-height: 360px; width: auto; justify-self: center; border-radius: 6px;">
+        </div>
+        <div class="card">
+          <h3><span lang="ja">エンドレス シューティングゲーム（授業のチーム制作）</span><span lang="en">Endless shooting game (class team project)</span></h3>
+          <p lang="ja">縦スクロールのシューティングゲームです。チームのリーダーとして、main の部分を書きました。</p>
+          <p lang="en">A vertical-scrolling shooting game. I was the team leader and wrote the main part.</p>
+          <p class="tech">C++, DxLib</p>
+        </div>
+        <div class="card">
+          <h3><span lang="ja">AI 電子鼻の測定キット（台湾での国際 PBL）</span><span lang="en">Measurement kit for the AI electronic nose (PBL in Taiwan)</span></h3>
+          <p lang="ja">ガスセンサの値を段階ごとに記録し、それをグラフにします。</p>
+          <p lang="en">It records gas sensor values step by step and draws graphs.</p>
+          <p class="tech">Arduino, Python</p>
+        </div>
+        <div class="card">
+          <h3><span lang="ja">学習管理の Discord bot（個人。2026年6月に運用を終了）</span><span lang="en">Study-management Discord bot (personal, ended in June 2026)</span></h3>
+          <p lang="ja">ポモドーロ、タスク管理、Google Calendar 連携、Claude API の応答を1つにまとめた bot です。</p>
+          <p lang="en">A bot with a Pomodoro timer, task management, Google Calendar, and Claude API replies.</p>
+          <p class="tech">Python, discord.py, SQLite</p>
+        </div>
+      </div>
+      <p class="tech" style="margin-top: 24px;"><span lang="ja">よく使う技術: Python, Claude Code ／ 授業やチームで使った技術: C / C++ (DxLib), TypeScript (Next.js), Arduino, Raspberry Pi ／ 半導体の実習: TCAD, KLayout</span><span lang="en">Often: Python, Claude Code / In class and teams: C / C++ (DxLib), TypeScript (Next.js), Arduino, Raspberry Pi / Semiconductor programs: TCAD, KLayout</span></p>
+    </div>
+  </section>
+
+  <section id="campus">
+    <div class="wrap">
+      <p class="mark">Activities</p>
+      <h2><span lang="ja">学内外の活動</span><span lang="en">Activities</span></h2>
+      <p class="sub" lang="ja">大学の英語プログラムや学生の団体で受け持った役割です。</p>
+      <p class="sub" lang="en">Roles I have taken in university programs and student groups.</p>
+      <ul class="items">
+        <li><span class="when">2025.04 –</span><div><h3><span lang="ja">GCP（Global Challenge Program、学内の英語プログラム）</span><span lang="en">GCP (Global Challenge Program, an English program at my university)</span></h3><p lang="ja">2025年12月のプロジェクト発表会で発表し、2026年6月に4期生に選ばれました。湯布院の学外研修ではプレゼンをしました。</p><p lang="en">I presented at the project presentation day in December 2025 and was selected for the 4th generation in June 2026. I gave a presentation at the off-campus training in Yufuin.</p></div></li>
+        <li><span class="when">2025.09 – 2026.02</span><div><h3><span lang="ja">長期インターン（約6か月）</span><span lang="en">Long-term internship (about six months)</span></h3></div></li>
+        <li><span class="when">2025.12</span><div><h3><span lang="ja">学内の英語スピーチコンテスト FIT TALKS 2025 に出場</span><span lang="en">Speaker at FIT TALKS 2025, an English speech contest at my university</span></h3><p lang="ja">FIT TALKS 2026 は上級部門にエントリーしています。</p><p lang="en">I have entered the advanced division of FIT TALKS 2026.</p></div></li>
+        <li><span class="when">2026.03</span><div><h3><span lang="ja">ピアサポーター</span><span lang="en">Peer supporter</span></h3><p lang="ja">新入生オリエンテーションのスライドを作りました。</p><p lang="en">I made the slides for the new student orientation.</p></div></li>
+        <li><span class="when">2026.09</span><div><h3><span lang="ja">工大サミット連携 PBL（広島）</span><span lang="en">Joint PBL of technical universities (Hiroshima)</span></h3><p lang="ja">宮島の町家の使い方を班で考えて提案し、全体発表とポスター発表をしました。</p><p lang="en">My group proposed new uses for a traditional townhouse in Miyajima, and gave a presentation and a poster session.</p></div></li>
+        <li><span class="when">2026</span><div><h3><span lang="ja">GSL（Global Student Leaders）リーダー</span><span lang="en">Leader, GSL (Global Student Leaders)</span></h3></div></li>
+      </ul>
+      <div class="photos">
+        <figure><img src="assets/img/miyajima-torii.jpg" alt="海に立つ厳島神社の大鳥居" loading="lazy" width="960" height="1280"><figcaption><span lang="ja">宮島でのフィールドワーク</span><span lang="en">Fieldwork in Miyajima</span></figcaption></figure>
+        <figure><img src="assets/img/machiya-room.jpg" alt="町家の畳の部屋" loading="lazy" width="960" height="1280"><figcaption><span lang="ja">提案の対象にした町家</span><span lang="en">The townhouse we worked on</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="timeline">
+    <div class="wrap">
+      <p class="mark">Timeline</p>
+      <h2><span lang="ja">年表</span><span lang="en">Timeline</span></h2>
+      <p class="sub" lang="ja">実際に参加した物だけを、古い順に並べています。</p>
+      <p class="sub" lang="en">Only things I actually took part in, oldest first.</p>
+      <ol class="timeline">
+        <li><span class="when">2025.04</span><span><span lang="ja">福岡工業大学に入学。GCP に参加</span><span lang="en">Entered Fukuoka Institute of Technology. Joined GCP</span></span></li>
+        <li><span class="when">2025.06</span><span><span lang="ja">タイ KMITL から来た研修生の受け入れ</span><span lang="en">Hosted students from KMITL, Thailand</span></span></li>
+        <li><span class="when">2025.08</span><span><span lang="ja">台湾 亜洲大学の学生との交流会</span><span lang="en">Exchange event with Asia University, Taiwan</span></span></li>
+        <li><span class="when">2025.09</span><span><span lang="ja">九州大学の高周波デバイス計測セミナー、プロセス・デバイスシミュレーション実習。集積回路設計・評価ハンズオンセミナーを開始。長期インターンを開始</span><span lang="en">Kyushu University programs on high-frequency devices and device simulation. Started the IC design seminar and a long-term internship</span></span></li>
+        <li><span class="when">2025.11</span><span><span lang="ja">半導体設計ゲーム「THE GAME」（IBM 九州DXセンター）</span><span lang="en">"THE GAME" at IBM Kyushu DX Center</span></span></li>
+        <li><span class="when">2025.12</span><span><span lang="ja">FIT TALKS 2025 に出場。GCP26 のプロジェクト発表会で発表</span><span lang="en">Speaker at FIT TALKS 2025. Presented at the GCP project presentation day</span></span></li>
+        <li><span class="when">2026.02</span><span><span lang="ja">タイ KMITL 短期派遣研修。Q-Quest GROW の DEMODAY で発表</span><span lang="en">Short-term program at KMITL, Thailand. Presented at Q-Quest GROW DEMODAY</span></span></li>
+        <li><span class="when">2026.03</span><span><span lang="ja">シンガポール SAIL Program。試作チップを受け取って測定。タイ研修の報告会で発表。新入生オリエンテーションのスライドを作成</span><span lang="en">SAIL Program, Singapore. Received and tested my prototype chip. Presented at the Thailand program report meeting. Made slides for the new student orientation</span></span></li>
+        <li><span class="when">2026.04</span><span><span lang="ja">在福岡米国領事館の半導体セミナーに参加</span><span lang="en">U.S. Consulate Fukuoka semiconductor seminar</span></span></li>
+        <li><span class="when">2026.06</span><span><span lang="ja">GCP 4期生に選ばれる。湯布院の学外研修でプレゼン</span><span lang="en">Selected for the 4th generation of GCP. Presentation at the Yufuin training</span></span></li>
+        <li><span class="when">2026.07</span><span><span lang="ja">授業のチーム制作でシューティングゲームを作る（リーダー）</span><span lang="en">Made a shooting game as team leader in a class project</span></span></li>
+        <li><span class="when">2026.08</span><span><span lang="ja">台湾 国立宜蘭大学との国際 PBL「AI 電子鼻」。雲林科技大学 半導体サマーキャンプ</span><span lang="en">International PBL "AI Electronic Nose" with National Ilan University. Semiconductor summer camp in Yunlin</span></span></li>
+        <li><span class="when">2026.09</span><span><span lang="ja">工大サミット連携 PBL（広島）。韓国 昌原国立大学の gPBL</span><span lang="en">Joint PBL in Hiroshima. gPBL at Changwon National University, Korea</span></span></li>
+        <li><span class="when">2026.10</span><span><span lang="ja">FIT TALKS 2026 上級部門にエントリー。claude-code-skills を公開</span><span lang="en">Entered FIT TALKS 2026 (advanced). Published claude-code-skills</span></span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <p class="mark">Contact</p>
+      <h2><span lang="ja">連絡先</span><span lang="en">Contact</span></h2>
+      <p class="sub" lang="ja">インターンや研修のお誘い、記事やスキルへの質問はメールでお願いします。</p>
+      <p class="sub" lang="en">For internships, programs, or questions about my articles and skills, please email me.</p>
+      <div class="contact">
+        <span class="mail" id="mail">khk589go@gmail.com</span>
+        <button type="button" class="copy" id="copy-mail"><span lang="ja">コピー</span><span lang="en">Copy</span></button>
+        <a href="https://github.com/kohaku-hys">GitHub</a>
+        <a href="https://zenn.dev/ai_daigakusei">Zenn</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span lang="ja">最終更新 2026年10月17日</span><span lang="en">Last updated October 17, 2026</span></div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  function setLang(lang) {
+    root.setAttribute("data-lang", lang);
+    root.setAttribute("lang", lang);
+    document.getElementById("btn-ja").setAttribute("aria-pressed", String(lang === "ja"));
+    document.getElementById("btn-en").setAttribute("aria-pressed", String(lang === "en"));
+    try { localStorage.setItem("portfolio-lang", lang); } catch (e) {}
+  }
+  var start = "ja";
+  var hash = (location.hash || "").replace("#", "");
+  var saved = null;
+  try { saved = localStorage.getItem("portfolio-lang"); } catch (e) {}
+  if (hash === "en" || hash === "ja") start = hash;
+  else if (saved === "en" || saved === "ja") start = saved;
+  else if (navigator.language && navigator.language.toLowerCase().indexOf("ja") !== 0) start = "en";
+  setLang(start);
+  document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.getAttribute("data-set-lang")); });
+  });
+  var btn = document.getElementById("copy-mail");
+  btn.addEventListener("click", function () {
+    var text = document.getElementById("mail").textContent;
+    var done = function () { btn.querySelector('[lang="ja"]').textContent = "コピーしました"; btn.querySelector('[lang="en"]').textContent = "Copied"; };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { window.getSelection().selectAllChildren(document.getElementById("mail")); });
+    } else {
+      window.getSelection().selectAllChildren(document.getElementById("mail"));
+    }
+  });
+})();
+</script>
+</body>
+</html>

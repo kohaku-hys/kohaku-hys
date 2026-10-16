@@ -3,6 +3,7 @@
 福岡工業大学 工学部 電子情報工学科の2年生です（2025年入学）。
 半導体の学外プログラムや海外研修に参加しながら、Claude Code で大学生活の道具を作って自分で使っています。
 作ったスキルの一部は [claude-code-skills](https://github.com/kohaku-hys/claude-code-skills) で公開していて、その作り方は [Zenn](https://zenn.dev/ai_daigakusei) に書いています。
+写真と年表はポートフォリオ（日本語・English）にまとめていて、そのページは [kohaku-hys.github.io/kohaku-hys](https://kohaku-hys.github.io/kohaku-hys/) にあります。
 
 ## 作った物
 
