@@ -190,6 +190,8 @@ h3 { font-size: 17px; margin: 0 0 4px; line-height: 1.5; }
 .sq { aspect-ratio: 1; width: 100%; border: 0; padding: 0; border-radius: 2px; background: var(--g0); outline: 1px solid var(--g-line); outline-offset: -1px; cursor: pointer; }
 .sq.l1 { background: var(--g1); } .sq.l2 { background: var(--g2); } .sq.l3 { background: var(--g3); } .sq.l4 { background: var(--g4); }
 .sq.pre { opacity: 0.45; cursor: default; }
+.sq.note { background: transparent; outline: 2px solid var(--g2); outline-offset: -2px; }
+.gh-legend i.note-i { background: transparent; outline: 2px solid var(--g2); outline-offset: -2px; margin-left: 10px; }
 .sq.none { visibility: hidden; }
 .sq[aria-pressed="true"] { outline: 2px solid var(--fg); outline-offset: 0; }
 .gh-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; margin-top: 10px; font-size: 12px; color: var(--muted); }
@@ -520,7 +522,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
         </div>
         <div class="gh-foot">
           <span id="gh-since"></span>
-          <span class="gh-legend"><span lang="ja">短い</span><span lang="en">Less</span><i style="background: var(--g0)"></i><i style="background: var(--g1)"></i><i style="background: var(--g2)"></i><i style="background: var(--g3)"></i><i style="background: var(--g4)"></i><span lang="ja">長い</span><span lang="en">More</span></span>
+          <span class="gh-legend"><span lang="ja">短い</span><span lang="en">Less</span><i style="background: var(--g0)"></i><i style="background: var(--g1)"></i><i style="background: var(--g2)"></i><i style="background: var(--g3)"></i><i style="background: var(--g4)"></i><span lang="ja">長い</span><span lang="en">More</span><i class="note-i"></i><span lang="ja">時間は数えていない日</span><span lang="en">Notes only</span></span>
         </div>
       </div>
       <div class="day-card" id="day-card" aria-live="polite"></div>
@@ -667,14 +669,15 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
   fetch("assets/activity.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (data) {
     var days = data.days, keys = Object.keys(days).sort();
     var total = 0, active = 0, prompts = 0, best = 0, run = 0;
-    keys.forEach(function (k) { var r = days[k]; total += r.h; prompts += r.p; if (r.h > 0) active++; });
-    for (var t = parse(data.since); key(t) <= data.until; t.setDate(t.getDate() + 1)) {
-      var r0 = days[key(t)]; if (r0 && r0.h > 0) { run++; if (run > best) best = run; } else run = 0;
+    function has(r) { return r && (r.h > 0 || r.n); }
+    keys.forEach(function (k) { var r = days[k]; total += r.h; prompts += r.p; if (has(r)) active++; });
+    for (var t = parse(data.notes_since || data.since); key(t) <= data.until; t.setDate(t.getDate() + 1)) {
+      if (has(days[key(t)])) { run++; if (run > best) best = run; } else run = 0;
     }
     var stats = document.getElementById("log-stats");
     [
       [Math.round(total) + "<small>h</small>", bi("AI と作業した時間", "Hours with AI")],
-      [active + "<small>" + bi("日", "days") + "</small>", bi("作業した日", "Active days")],
+      [active + "<small>" + bi("日", "days") + "</small>", bi("記録のある日", "Days on record")],
       [prompts.toLocaleString() + "<small>" + bi("回", "") + "</small>", bi("Claude に指示した回数", "Instructions to Claude")],
       [best + "<small>" + bi("日", "days") + "</small>", bi("いちばん長く続いた日数", "Longest streak")]
     ].forEach(function (s) { stats.appendChild(el("div", "stat", "<b>" + s[0] + "</b>" + s[1])); });
@@ -686,7 +689,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
     keys.forEach(function (k) { if (k >= key(start)) yearH += days[k].h; });
     document.getElementById("gh-title").innerHTML = bi("この1年で <b>" + yearH.toFixed(1) + " 時間</b>、AI と作業しました", "<b>" + yearH.toFixed(1) + " hours</b> with AI in the last year");
     var sd = parse(data.since);
-    document.getElementById("gh-since").innerHTML = bi("記録は " + (sd.getMonth() + 1) + "月" + sd.getDate() + "日から（それより前は数えていません）", "Tracking since " + MON_EN[sd.getMonth()] + " " + sd.getDate() + ", " + sd.getFullYear());
+    document.getElementById("gh-since").innerHTML = bi("時間は " + (sd.getMonth() + 1) + "月" + sd.getDate() + "日から数えています。それより前の枠だけのマスは、日記に残っている「やったこと」だけの日です", "Hours are tracked since " + MON_EN[sd.getMonth()] + " " + sd.getDate() + ". Outlined squares before that are days with notes only.");
 
     var dows = document.getElementById("gh-dows");
     dows.appendChild(el("span"));
@@ -703,10 +706,10 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
         var d = new Date(w); d.setDate(d.getDate() + i);
         var k = key(d), r = days[k];
         if (d > end) { cols.appendChild(el("span", "sq none")); continue; }
-        var pre = k < data.since, h = r ? r.h : 0;
-        var b = el("button", "sq l" + level(h) + (pre ? " pre" : ""));
+        var note = !!(r && r.n), pre = k < data.since && !note, h = r ? r.h : 0;
+        var b = el("button", note ? "sq note" : "sq l" + level(h) + (pre ? " pre" : ""));
         b.type = "button"; b.dataset.day = k;
-        b.title = pre ? k : (h > 0 ? h.toFixed(1) + "h · " : "") + k;
+        b.title = pre || note ? k : (h > 0 ? h.toFixed(1) + "h · " : "") + k;
         b.setAttribute("aria-label", k + " " + hrs(h));
         b.setAttribute("aria-pressed", "false");
         if (pre) b.disabled = true; else b.addEventListener("click", function () { show(this.dataset.day); });
@@ -720,7 +723,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
       if (selected && cells[selected]) cells[selected].setAttribute("aria-pressed", "false");
       selected = k; if (cells[k]) cells[k].setAttribute("aria-pressed", "true");
       var r = days[k] || { h: 0, p: 0, a: 0 };
-      var html = '<div class="top"><span class="d">' + fmtDate(k) + '</span><span class="h">' + (r.h > 0 ? r.h.toFixed(1) + bi("時間", " h") : "") + "</span>";
+      var html = '<div class="top"><span class="d">' + fmtDate(k) + '</span><span class="h">' + (r.h > 0 ? r.h.toFixed(1) + bi("時間", " h") : "") + "</span>" + (r.n ? '<span class="meta">' + bi("時間は数えていない日", "Hours not tracked") + "</span>" : "");
       if (r.t && r.t.length) html += '<span class="chips">' + chips(r.t) + "</span>";
       html += "</div>";
       if (r.ja && r.ja.length) {

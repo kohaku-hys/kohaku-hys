@@ -1,5 +1,6 @@
 {
 "updated":"2026-11-18",
+"notes_since":"2026-07-03",
 "since":"2026-10-16",
 "until":"2026-11-17",
 "method":{
@@ -7,6 +8,1061 @@
 "note":"Claude Code の会話記録の時刻から計算"
 },
 "days":{
+"2026-07-03":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"build"
+],
+"ja":[
+"Claude Code の専門エージェント6体とスキル3本を作った",
+"スマホの Telegram から Claude に作業を頼める仕組みを作った"
+],
+"en":[
+"Built six specialist agents and three new skills for Claude Code",
+"Built a way to send tasks to Claude from Telegram on my phone"
+]
+},
+"2026-07-05":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study",
+"club"
+],
+"ja":[
+"微分方程式の課題（完全微分方程式）を出した",
+"野菜不足を解消するアイデアのコンテストの応募資料（5ページ）の下書きを作った"
+],
+"en":[
+"Submitted a differential equations assignment (exact equations)",
+"Drafted a 5-page entry for an idea contest on young people's vegetable intake"
+]
+},
+"2026-07-06":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study"
+],
+"ja":[
+"実験レポート（トランジスタの増幅回路）を v6 まで仕上げた",
+"LTspice の実験のレポートとプレレポートの初版を作った"
+],
+"en":[
+"Finished a lab report on a transistor amplifier (v6)",
+"Wrote first drafts of a report and pre-lab report for an LTspice lab"
+]
+},
+"2026-07-07":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"build"
+],
+"ja":[
+"スライドを作るスキルを「文字を減らす」方針に直した",
+"ダウンロードの整理や重複ファイル探しなどの道具を作った"
+],
+"en":[
+"Updated my slide-making skill to use fewer words",
+"Built small tools to tidy downloads and find duplicate files"
+]
+},
+"2026-07-08":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study"
+],
+"ja":[
+"電子回路の中間テストの対策問題を作った",
+"中国語の自己紹介テストの対策を作った"
+],
+"en":[
+"Made practice questions for an electronic circuits midterm",
+"Prepared for a Chinese self-introduction test"
+]
+},
+"2026-07-09":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study"
+],
+"ja":[
+"実験レポート（トランジスタの増幅回路）を出した",
+"電子回路の過去問の解答をそろえた",
+"LTspice の実験のレポートを進めた"
+],
+"en":[
+"Submitted the transistor amplifier lab report",
+"Prepared answers to past electronic circuits exams",
+"Worked on the LTspice lab report"
+]
+},
+"2026-07-10":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"talk",
+"study"
+],
+"ja":[
+"量子の人材育成プログラムで、スライドを使って感想を発表した",
+"電磁気学の事前課題を出した"
+],
+"en":[
+"Presented my reflections with slides at a quantum talent program",
+"Submitted an electromagnetics pre-class assignment"
+]
+},
+"2026-07-12":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"build"
+],
+"ja":[
+"定期で動く自作ツールが画面に窓を出さないように作り直した"
+],
+"en":[
+"Reworked my scheduled tools so they run without opening windows"
+]
+},
+"2026-07-13":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study",
+"build"
+],
+"ja":[
+"チームのシューティングゲームで弾と自機のコードを書いた",
+"交流イベントの報告書を作るスクリプトを書いた"
+],
+"en":[
+"Wrote the bullet and player code for our team shooting game",
+"Wrote a script that builds an event report"
+]
+},
+"2026-07-14":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study",
+"talk",
+"club"
+],
+"ja":[
+"チームのゲームの発表スライドと字幕付きの5分の動画を作った",
+"プログラミング演習の個人レポートを書いた",
+"国際交流団体のスポーツ交流会の報告書を書いた"
+],
+"en":[
+"Made slides and a 5-minute subtitled video for our team game",
+"Wrote my individual programming report",
+"Wrote the report on a sports event for an international student group"
+]
+},
+"2026-07-15":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study"
+],
+"ja":[
+"物理学の期末に向けて、過去問の解答解説を作った",
+"LTspice の実験のレポートで理論値との比べを進めた"
+],
+"en":[
+"Made worked answers to past physics finals",
+"Compared results with theory in my LTspice lab report"
+]
+},
+"2026-07-16":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study",
+"talk"
+],
+"ja":[
+"チームのシューティングゲームの発表スライド・台本・動画を仕上げた"
+],
+"en":[
+"Finished the slides, script and video for our team shooting game"
+]
+},
+"2026-07-27":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study"
+],
+"ja":[
+"期末試験を2科目受けた",
+"プログラミングの個人レポートを直した"
+],
+"en":[
+"Took two final exams",
+"Revised my individual programming report"
+]
+},
+"2026-07-28":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study"
+],
+"ja":[
+"期末試験を2科目受けた（期末の最終日）"
+],
+"en":[
+"Took two more final exams on the last day of finals"
+]
+},
+"2026-07-30":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study",
+"build"
+],
+"ja":[
+"チーム課題の38関数を1つずつ確かめ、担当表を埋めた",
+"基本情報技術者試験の演習データ（11章分）を作り始めた"
+],
+"en":[
+"Checked all 38 functions of our team project and filled in the owner list",
+"Started building practice data for an IT exam (11 chapters)"
+]
+},
+"2026-07-31":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study",
+"build"
+],
+"ja":[
+"基本情報技術者試験の一問一答を119問から166問に増やした",
+"印刷用 PDF を問題編と解答編の2部に分けた"
+],
+"en":[
+"Grew my IT exam flashcards from 119 to 166 questions",
+"Split the printable PDF into a question part and an answer part"
+]
+},
+"2026-08-01":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club",
+"build"
+],
+"ja":[
+"飲み物の香りを AI で分ける電子の鼻の研修が始まった",
+"家の PC をどこからでも遠隔で操作できるようにした"
+],
+"en":[
+"Started the PBL \"An AI-Based Electronic Nose for Beverage Flavor Classification\"",
+"Set up remote access to my home PC from anywhere"
+]
+},
+"2026-08-02":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club"
+],
+"ja":[
+"電子の鼻の研修の開会。講義を聞き、チームに分かれて話し合った"
+],
+"en":[
+"Opening day of the electronic nose PBL: lectures and team brainstorming"
+]
+},
+"2026-08-04":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club",
+"build"
+],
+"ja":[
+"研修で Arduino とガスセンサ3つを動かし、醤油への反応を確かめた",
+"最終発表の骨組みと測定計画を作った"
+],
+"en":[
+"Got an Arduino and three gas sensors working and tested them on soy sauce",
+"Drafted the final presentation outline and a measurement plan"
+]
+},
+"2026-08-05":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club",
+"build"
+],
+"ja":[
+"コンテストの応募資料を要項に合わせて直した",
+"応募書類やレポートを点検するツールを3本作った"
+],
+"en":[
+"Fixed my contest entry to match the rules",
+"Built three tools to check entries and reports"
+]
+},
+"2026-08-06":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club",
+"build"
+],
+"ja":[
+"醤油2種を11回測った",
+"見分けられない原因が測り方にあると解析で突き止めた"
+],
+"en":[
+"Ran 11 measurements of two soy sauces",
+"Found through analysis that the measuring method, not the samples, was the problem"
+]
+},
+"2026-08-08":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club",
+"talk",
+"build"
+],
+"ja":[
+"台湾と日本の醤油を電子の鼻で測り比べた",
+"センサが飽和していたことを突き止めた",
+"中間発表のスライド（14枚）を作った"
+],
+"en":[
+"Compared Taiwanese and Japanese soy sauces with the electronic nose",
+"Found that two sensors were saturating",
+"Made 14 slides for the midterm presentation"
+]
+},
+"2026-08-09":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"talk",
+"club"
+],
+"ja":[
+"研修の中間発表をした（スライド17枚）",
+"ピーク値で見ると銘柄を見分けられると分かった",
+"日本語と中国語の解説資料を作った"
+],
+"en":[
+"Gave the PBL midterm presentation (17 slides)",
+"Found that peak values can tell the brands apart",
+"Made a Japanese-Chinese guide to the slides"
+]
+},
+"2026-08-12":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club",
+"talk"
+],
+"ja":[
+"醤油4銘柄を本番の条件で測った",
+"ピーク値が別の日でも2%以内で合うことを確かめた",
+"最終発表のスライド（17枚）を英語と日本語で作った"
+],
+"en":[
+"Measured four soy sauce brands under final conditions",
+"Confirmed peak values matched within 2% across days",
+"Made the final presentation (17 slides) in English and Japanese"
+]
+},
+"2026-08-13":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"talk",
+"club"
+],
+"ja":[
+"電子の鼻の研修で最終発表をした（英語・18枚）",
+"想定される質問25問と答えを用意した"
+],
+"en":[
+"Gave the final presentation of the electronic nose PBL (English, 18 slides)",
+"Prepared answers to 25 likely questions"
+]
+},
+"2026-08-17":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club",
+"study"
+],
+"ja":[
+"半導体のサマーキャンプで、製造工程の講義を受けた",
+"半導体の研究施設を見学した"
+],
+"en":[
+"Semiconductor summer camp: attended lectures on how chips are made",
+"Toured semiconductor research facilities"
+]
+},
+"2026-08-19":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club",
+"study"
+],
+"ja":[
+"紙で橋を作る競技と、micro:bit で車とベルトコンベアを動かす実習をした",
+"インダストリー4.0 の講義を受けた",
+"半導体のサマーキャンプを修了した"
+],
+"en":[
+"Built a paper bridge and controlled a car and a conveyor belt with micro:bit",
+"Attended a lecture on Industry 4.0",
+"Completed the semiconductor summer camp"
+]
+},
+"2026-08-20":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club"
+],
+"ja":[
+"研修の見学で、工場の自動化ラインを実物で見た",
+"見学の日のまとめ資料を作った"
+],
+"en":[
+"Saw a real automated factory line on a study tour",
+"Wrote a summary of the tour day"
+]
+},
+"2026-08-22":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club"
+],
+"ja":[
+"サマーキャンプの最終レポートの感想を書いた"
+],
+"en":[
+"Wrote the reflection for my summer camp final report"
+]
+},
+"2026-08-23":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study"
+],
+"ja":[
+"基本情報技術者試験の勉強を始めた（科目Aの過去問）"
+],
+"en":[
+"Started studying for an IT exam with past questions"
+]
+},
+"2026-08-24":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study",
+"club"
+],
+"ja":[
+"基本情報技術者試験の対策講座の1回目に出た",
+"建設技術のコンテストに出す応募資料をまとめた"
+],
+"en":[
+"Attended the first session of an IT exam prep course",
+"Put together my entry for a construction technology contest"
+]
+},
+"2026-08-25":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club"
+],
+"ja":[
+"大学に出すサマーキャンプの報告書を書いた"
+],
+"en":[
+"Wrote my summer camp report for the university"
+]
+},
+"2026-08-26":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study",
+"club"
+],
+"ja":[
+"対策講座の2回目でデータベースとアルゴリズムを学んだ",
+"サマーキャンプの報告書を v3 に直した"
+],
+"en":[
+"Studied databases and algorithms in the second prep course session",
+"Revised the summer camp report (v3)"
+]
+},
+"2026-08-28":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study",
+"club",
+"build"
+],
+"ja":[
+"対策講座の3回目でセキュリティと擬似言語のアルゴリズムを演習した",
+"サマーキャンプの報告書を v4 に直した",
+"Claude の作業環境の不満を洗い出してまとめて直した"
+],
+"en":[
+"Practiced security and pseudocode algorithms in the third prep course session",
+"Revised the summer camp report (v4)",
+"Listed and fixed the pain points in my Claude setup"
+]
+},
+"2026-09-02":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club",
+"talk"
+],
+"ja":[
+"他大学との合同PBLで、古い町家の活用案を中間発表した",
+"町家について42人に聞き取り調査をした",
+"町家を紹介するスマホ向けのページを作った"
+],
+"en":[
+"Gave a midterm talk on reusing an old townhouse in a joint PBL with other universities",
+"Surveyed 42 people about the townhouse",
+"Built a one-page mobile site about the townhouse"
+]
+},
+"2026-09-03":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club",
+"talk"
+],
+"ja":[
+"合同PBLの最終発表をした（スライド15枚・7分）",
+"最終発表のスライドを v24 まで作り直した",
+"質疑に備えて、数字と法令の想定問答をまとめた"
+],
+"en":[
+"Gave the final presentation of the joint PBL (15 slides, 7 minutes)",
+"Rebuilt the final slides up to v24",
+"Prepared answers on numbers and laws for the Q&A"
+]
+},
+"2026-09-04":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club"
+],
+"ja":[
+"合同PBLの報告書と振り返りを書いた"
+],
+"en":[
+"Wrote the report and reflection for the joint PBL"
+]
+},
+"2026-09-07":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club"
+],
+"ja":[
+"海外研修が始まり、英語のグループワークを始めた"
+],
+"en":[
+"Started an overseas program and began group work in English"
+]
+},
+"2026-09-08":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club",
+"study",
+"talk"
+],
+"ja":[
+"研修で塩水のスーパーキャパシタを作り、プロペラを回した",
+"動かない原因を順に調べ、接触不良を見つけた",
+"この実験の発表スライド（12枚）を作った"
+],
+"en":[
+"Built a saltwater supercapacitor and used it to spin a propeller",
+"Found the cause of a failure step by step: a loose contact",
+"Made a 12-slide deck about the experiment"
+]
+},
+"2026-09-09":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"talk",
+"club"
+],
+"ja":[
+"研修の英語の成果発表スライドを v5（19枚）まで作った",
+"発表に使う数字を一次情報で確かめて直した"
+],
+"en":[
+"Made the English slides for the program's final talk up to v5 (19 slides)",
+"Checked the numbers against primary sources and fixed them"
+]
+},
+"2026-09-10":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club",
+"talk"
+],
+"ja":[
+"研修で企業2社を訪ね、金属を再生する現場を見学した",
+"英語の成果発表スライドを v13 まで作り込んだ"
+],
+"en":[
+"Visited two companies that recycle metal parts",
+"Improved the English final slides up to v13"
+]
+},
+"2026-09-11":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"talk",
+"club"
+],
+"ja":[
+"研修の成果発表の日。スライドを17枚に絞った",
+"やさしい英語で読み上げ原稿を作った"
+],
+"en":[
+"Day of the program's final talk; cut the slides to 17",
+"Wrote a reading script in simple English"
+]
+},
+"2026-09-18":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"build"
+],
+"ja":[
+"大学ポータルを見回る自作ツールを、終わったらブラウザを閉じるよう直した"
+],
+"en":[
+"Made my university portal checker close the browser when it finishes"
+]
+},
+"2026-09-21":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"build"
+],
+"ja":[
+"自分の AI の使い方と仕組みを、人に渡せる解説文にまとめた"
+],
+"en":[
+"Wrote a guide to how I use AI, so others can copy the setup"
+]
+},
+"2026-09-24":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study",
+"build"
+],
+"ja":[
+"後期の授業が始まり、電子計測の初回に出た",
+"英語の課題（色をテーマにした写真の作文）を出した",
+"文章のAIっぽさを消す自作スキルに、話の組み立ての決まりを足した"
+],
+"en":[
+"Fall classes started; attended the first measurement class",
+"Submitted an English assignment: a photo essay on one color",
+"Added structure rules to my skill that removes AI-like writing"
+]
+},
+"2026-09-26":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"build"
+],
+"ja":[
+"文章のAIっぽさを見る自作スキルを4か所よくした"
+],
+"en":[
+"Made four improvements to my AI-like writing checker"
+]
+},
+"2026-09-28":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"build"
+],
+"ja":[
+"スライドを作る自作スキルを、写真や図を使う形に作り直した",
+"コードを git で管理する作業場へ移した",
+"レポートを作る自作スキルの決まりとテストを直した"
+],
+"en":[
+"Rebuilt my slide-making skill to use photos and real diagrams",
+"Moved my code to a separate git workspace",
+"Fixed the rules and tests of my report-writing skill"
+]
+},
+"2026-09-29":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study",
+"build"
+],
+"ja":[
+"実験レポートの下書きを4テーマぶん作った",
+"技術者倫理の第1回課題（高速船の安全問題）を出した",
+"PC 間で作業を引き継ぐスキルと、常駐カレンダーを作った"
+],
+"en":[
+"Drafted lab reports for four experiments",
+"Submitted my first engineering ethics assignment (a ferry safety case)",
+"Built a skill to hand off work between PCs, and a desktop calendar"
+]
+},
+"2026-09-30":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"club",
+"build"
+],
+"ja":[
+"半導体の産業展を見に行った",
+"技術記事を7本書き、Zenn に2本公開した",
+"Raspberry Pi に PC からログインして C を動かす環境を作った"
+],
+"en":[
+"Visited a semiconductor industry expo",
+"Wrote seven tech articles and published two on Zenn",
+"Set up a Raspberry Pi so I can log in from my PC and run C"
+]
+},
+"2026-10-01":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"build"
+],
+"ja":[
+"スライド・文章・レポートの自作の検査に、AIっぽい文の基準を足した",
+"作ったツールとファイルの置き場を見直して整理した"
+],
+"en":[
+"Added AI-like writing rules to my checkers for slides, text and reports",
+"Reviewed and cleaned up my tools and folders"
+]
+},
+"2026-10-02":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"talk",
+"study"
+],
+"ja":[
+"自作ツールの改良を説明するスライド（8枚）を作った",
+"電子物性の宿題と事前課題を出した"
+],
+"en":[
+"Made an 8-slide progress report on my tool improvements",
+"Submitted solid-state physics homework and a pre-class task"
+]
+},
+"2026-10-05":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study",
+"talk",
+"build"
+],
+"ja":[
+"授業の課題「習慣のデザイン」を出した",
+"英語発表（ハワイの下水処理）のスライド11枚を作った",
+"勉強の予定がある間だけ音楽を流す仕組みを作った"
+],
+"en":[
+"Submitted a class assignment on designing habits",
+"Made 11 slides for an English talk on wastewater treatment in Hawaii",
+"Built a tool that plays music only during my study time"
+]
+},
+"2026-10-06":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study",
+"build"
+],
+"ja":[
+"実験（電圧降下法で抵抗を測る）をして、レポートを v11 まで作った",
+"授業の時間になると自動で文字起こしを始める仕組みを作った",
+"電子物性の事前課題の解説を作って復習した"
+],
+"en":[
+"Lab: measured resistors by the voltage-drop method; report up to v11",
+"Built a tool that starts transcribing when a class begins",
+"Made an explanation of a solid-state physics task to review it"
+]
+},
+"2026-10-07":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study",
+"build"
+],
+"ja":[
+"実験レポートの式を見やすく直し、v12 にした",
+"レポートを作る自作スキルに、式の改行の直しを入れた"
+],
+"en":[
+"Made the equations in my lab report easier to read (v12)",
+"Added equation line-breaking to my report-writing skill"
+]
+},
+"2026-10-08":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"talk"
+],
+"ja":[
+"英語発表のスライドを中学英語のレベルに書き直した（v6）"
+],
+"en":[
+"Rewrote my English talk slides in simple English (v6)"
+]
+},
+"2026-10-09":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study",
+"talk"
+],
+"ja":[
+"次の実験（トランジスタの増幅回路）の事前レポートと本レポートの下書きを作った",
+"電子物性の宿題と事前課題を出した",
+"英語発表のスライドと原稿をもっとやさしい英語にした（v7）"
+],
+"en":[
+"Drafted the pre-lab and main reports for a transistor amplifier lab",
+"Submitted solid-state physics homework and a pre-class task",
+"Made my English talk slides and script even simpler (v7)"
+]
+},
+"2026-10-13":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"study",
+"talk",
+"build"
+],
+"ja":[
+"実験（増幅回路のバイアス）をして、レポートを v20 まで仕上げた",
+"前の実験のレポートと、英語スピーチの題を出した",
+"技術者倫理の第3回課題を出した"
+],
+"en":[
+"Lab: measured an amplifier's bias circuit; finished the report (v20)",
+"Submitted the previous lab report and my English speech topic",
+"Submitted my third engineering ethics assignment"
+]
+},
+"2026-10-14":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"talk"
+],
+"ja":[
+"英語スピーチ（ショート動画の話）のスライド v2 を作った"
+],
+"en":[
+"Made v2 of my English speech slides about short videos"
+]
+},
+"2026-10-15":{
+"h":0,
+"p":0,
+"a":0,
+"n":1,
+"t":[
+"talk",
+"build"
+],
+"ja":[
+"教育AIのイベントで話す事例紹介のスライド v1（15枚）を作った",
+"英語スピーチのスライドを v6 まで直し、アウトラインを書いた",
+"古い版のファイルを毎晩自動で片づける仕組みを作った"
+],
+"en":[
+"Made v1 of my slides for an education-AI community talk (15 slides)",
+"Revised my English speech slides to v6 and drafted the outline",
+"Built a tool that clears out old file versions every night"
+]
+},
 "2026-10-16":{
 "h":1.2,
 "p":4,
