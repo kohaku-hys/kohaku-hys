@@ -1,0 +1,501 @@
+{
+"updated":"2026-11-18",
+"since":"2026-10-16",
+"until":"2026-11-17",
+"method":{
+"gap_min":15,
+"note":"Claude Code の会話記録の時刻から計算"
+},
+"days":{
+"2026-10-16":{
+"h":1.2,
+"p":4,
+"a":0,
+"t":[
+"talk",
+"build"
+],
+"ja":[
+"教育AIのイベントで話す事例紹介のスライドを v2 から v5 まで直した",
+"英語スピーチのスライドを v7 から v11 まで進めた",
+"自作の Claude Code スキル集を GitHub に公開した"
+],
+"en":[
+"Revised my slides for an education-AI community talk (v2 to v5)",
+"Moved my English speech slides from v7 to v11",
+"Published my own Claude Code skills on GitHub"
+]
+},
+"2026-10-17":{
+"h":5.7,
+"p":44,
+"a":0,
+"t":[
+"build",
+"talk"
+],
+"ja":[
+"このポートフォリオを作って公開した（日本語・English）",
+"事例紹介のスライドを v6 から v11 まで直した",
+"PC を遠隔で操作する仕組みの安全対策をした"
+],
+"en":[
+"Built and published this portfolio (Japanese and English)",
+"Revised the community talk slides (v6 to v11)",
+"Hardened the security of my remote-control setup"
+]
+},
+"2026-10-18":{
+"h":1.2,
+"p":16,
+"a":0,
+"t":[
+"talk"
+],
+"ja":[
+"事例紹介のスライドを v13 まで直した"
+],
+"en":[
+"Revised the community talk slides up to v13"
+]
+},
+"2026-10-19":{
+"h":0.6,
+"p":7,
+"a":10,
+"t":[
+"study",
+"build"
+],
+"ja":[
+"プログラミングの課題（Raspberry Pi のシェル）を出した",
+"Raspberry Pi の接続が切れる原因を調べる診断ツールを作った",
+"Claude の状態でキーボードの光の色が変わる常駐ツールを作った"
+],
+"en":[
+"Submitted a programming assignment (shell on Raspberry Pi)",
+"Built a diagnostic kit for a Raspberry Pi that kept disconnecting",
+"Built a tool that changes my keyboard light by Claude's status"
+]
+},
+"2026-10-20":{
+"h":1.1,
+"p":11,
+"a":6,
+"t":[
+"study"
+],
+"ja":[
+"実験で Raspberry Pi と PC を無線でつないだ",
+"技術者倫理の課題（3つの学会の倫理綱領を比べる）を出した",
+"電子計測の過去問31問に、1問ずつ動く図を付けた解説ページを作った"
+],
+"en":[
+"Lab: connected a Raspberry Pi and a PC over Wi-Fi",
+"Submitted an engineering ethics assignment comparing three codes of ethics",
+"Made an explainer page with an animated figure for each of 31 past exam questions"
+]
+},
+"2026-10-21":{
+"h":0.4,
+"p":11,
+"a":7,
+"t":[
+"study"
+],
+"ja":[
+"電子計測の中間テストに向けて、分からない所を Claude に聞きながら勉強した"
+],
+"en":[
+"Studied for a measurement midterm by asking Claude about the parts I did not understand"
+]
+},
+"2026-10-22":{
+"h":1.5,
+"p":18,
+"a":7,
+"t":[
+"study",
+"talk"
+],
+"ja":[
+"電子計測の中間テストの日。朝まで勉強した",
+"事例紹介のスライドに「AIに聞く前に10分考える」の1枚を足した"
+],
+"en":[
+"Measurement midterm day; studied until the morning",
+"Added a slide: think for 10 minutes before asking AI"
+]
+},
+"2026-10-23":{
+"h":0.9,
+"p":2,
+"a":6,
+"t":[
+"talk"
+],
+"ja":[
+"事例紹介のスライドを2回作り直した（v16）"
+],
+"en":[
+"Rebuilt the community talk slides twice (v16)"
+]
+},
+"2026-10-24":{
+"h":1.0,
+"p":4,
+"a":10,
+"t":[
+"talk"
+],
+"ja":[
+"教育AIのイベントでの事例紹介の日。本番の30分前まで v21 に直した"
+],
+"en":[
+"Day of my education-AI community talk; kept improving the slides until 30 minutes before (v21)"
+]
+},
+"2026-10-25":{
+"h":0.1,
+"p":2,
+"a":10
+},
+"2026-10-26":{
+"h":2.3,
+"p":29,
+"a":28,
+"t":[
+"build",
+"study"
+],
+"ja":[
+"帰宅すると今日やることをスマートスピーカーが読み上げる機能を作った",
+"実験レポートの下書きを直した",
+"英語の授業の振り返り文を書き直した"
+],
+"en":[
+"Made my smart speaker read out today's tasks when I get home",
+"Revised a lab report draft",
+"Rewrote a reflection for my English program"
+]
+},
+"2026-10-27":{
+"h":0.8,
+"p":5,
+"a":10,
+"t":[
+"study"
+],
+"ja":[
+"実験（トランジスタの増幅回路）を測って、レポートを v5 まで作った",
+"技術者倫理の課題（原子力の事故の事例）を下書きした"
+],
+"en":[
+"Lab: measured transistor amplifier circuits and wrote the report up to v5",
+"Drafted an engineering ethics assignment on a nuclear accident case"
+]
+},
+"2026-10-28":{
+"h":2.8,
+"p":20,
+"a":7,
+"t":[
+"study",
+"build"
+],
+"ja":[
+"実験の事前レポート2本を作った",
+"増幅回路のレポートを v9 まで仕上げた",
+"自分の AI の使い方と道具を見直した"
+],
+"en":[
+"Wrote two pre-lab reports",
+"Finished the amplifier lab report (v9)",
+"Reviewed how I use AI and my own tools"
+]
+},
+"2026-10-29":{
+"h":0.0,
+"p":0,
+"a":5
+},
+"2026-10-30":{
+"h":2.0,
+"p":35,
+"a":7,
+"t":[
+"study"
+],
+"ja":[
+"たまっていた提出物を朝のうちに片づけた",
+"技術者倫理の発表原稿を出した",
+"電子計測の期末の過去問解説を作った"
+],
+"en":[
+"Cleared my backlog of assignments in the morning",
+"Submitted my engineering ethics presentation script",
+"Made explanations of past final exam questions for measurement"
+]
+},
+"2026-10-31":{
+"h":0.6,
+"p":12,
+"a":5,
+"t":[
+"study"
+],
+"ja":[
+"土曜の補講2コマに出た"
+],
+"en":[
+"Attended two Saturday make-up classes"
+]
+},
+"2026-11-01":{
+"h":0.0,
+"p":0,
+"a":10
+},
+"2026-11-02":{
+"h":0.0,
+"p":0,
+"a":7
+},
+"2026-11-03":{
+"h":0.0,
+"p":0,
+"a":9
+},
+"2026-11-04":{
+"h":0.0,
+"p":0,
+"a":10
+},
+"2026-11-05":{
+"h":0.7,
+"p":20,
+"a":9,
+"t":[
+"study"
+],
+"ja":[
+"来週の予定と時間割を整えた"
+],
+"en":[
+"Organized next week's schedule"
+]
+},
+"2026-11-06":{
+"h":2.7,
+"p":42,
+"a":13,
+"t":[
+"study",
+"build"
+],
+"ja":[
+"応用プログラミングの中間テストの対策資料（45ページ）を仕上げた",
+"実験の下書きを採点し直してよくした"
+],
+"en":[
+"Finished a 45-page study guide for my programming midterm",
+"Re-graded and improved my lab drafts"
+]
+},
+"2026-11-07":{
+"h":0.2,
+"p":2,
+"a":7,
+"t":[
+"study"
+],
+"ja":[
+"来週の提出物5件を確かめて予定に入れた"
+],
+"en":[
+"Checked next week's five assignments and scheduled them"
+]
+},
+"2026-11-08":{
+"h":1.0,
+"p":15,
+"a":9,
+"t":[
+"study"
+],
+"ja":[
+"応用プログラミングの中間テストに持ち込む資料とコマンドの早見表を作った",
+"相対パスやコマンドの意味を Claude に聞いて勉強した"
+],
+"en":[
+"Made notes and a command cheat sheet for my programming midterm",
+"Studied paths and commands by asking Claude"
+]
+},
+"2026-11-09":{
+"h":3.0,
+"p":29,
+"a":10,
+"t":[
+"talk",
+"club",
+"build"
+],
+"ja":[
+"英語スピーチ（FIT TALKS）のスライドと原稿を作った",
+"国際交流サークルのクリスマスBBQの企画（予算・買い出し）を詰めた",
+"スマホから PC の Claude を使う仕組みを作り直した"
+],
+"en":[
+"Made slides and a script for my English speech (FIT TALKS)",
+"Planned a Christmas BBQ for our international student club (budget and shopping)",
+"Rebuilt how I use Claude on my PC from my phone"
+]
+},
+"2026-11-10":{
+"h":2.2,
+"p":31,
+"a":8,
+"t":[
+"study",
+"club",
+"talk"
+],
+"ja":[
+"技術者倫理の課題を出した",
+"電子物性の中間テストの解説ページを v6 まで作った",
+"クリスマスBBQの連絡を整えた"
+],
+"en":[
+"Submitted an engineering ethics assignment",
+"Made an explainer page for my solid-state physics midterm (v6)",
+"Prepared messages for the Christmas BBQ"
+]
+},
+"2026-11-11":{
+"h":1.5,
+"p":8,
+"a":8,
+"t":[
+"talk"
+],
+"ja":[
+"英語での3分発表（ハワイ語がテーマ）のスライドを作り始めた",
+"英語スピーチのスライドを見直した"
+],
+"en":[
+"Started slides for a 3-minute English talk about the Hawaiian language",
+"Reviewed my English speech slides"
+]
+},
+"2026-11-12":{
+"h":3.2,
+"p":44,
+"a":6,
+"t":[
+"talk",
+"build"
+],
+"ja":[
+"英語スピーチのスライドを TED 風に作り直した（v17）",
+"ハワイ語の発表を v2 から v5 まで進めた",
+"2つ目のモニターに「勉強する」ボタンを置いた"
+],
+"en":[
+"Redesigned my English speech slides in a TED style (v17)",
+"Moved the Hawaiian language talk from v2 to v5",
+"Put a \"Study\" button on my second monitor"
+]
+},
+"2026-11-13":{
+"h":4.5,
+"p":53,
+"a":13,
+"t":[
+"talk",
+"study"
+],
+"ja":[
+"英語スピーチのスライドを v21 まで進めた",
+"ハワイ語の発表を v9 まで進めた",
+"電気回路の中間テスト対策のページを作った（練習問題7問）"
+],
+"en":[
+"English speech slides up to v21",
+"Hawaiian language talk up to v9",
+"Made a study page for my circuits midterm (7 practice problems)"
+]
+},
+"2026-11-14":{
+"h":1.3,
+"p":7,
+"a":5,
+"t":[
+"talk",
+"study"
+],
+"ja":[
+"英語スピーチのスライドを v26、原稿を v16 まで直した",
+"ハワイ語の発表を v12 にした",
+"電子計測の期末に向けた練習問題を作った"
+],
+"en":[
+"English speech: slides v26, script v16",
+"Hawaiian language talk v12",
+"Made practice problems for my measurement final"
+]
+},
+"2026-11-15":{
+"h":2.2,
+"p":31,
+"a":12,
+"t":[
+"talk",
+"study"
+],
+"ja":[
+"研究室訪問で聞くことを準備した",
+"英語スピーチを v28 にした",
+"ハワイ語の発表を v13 にした"
+],
+"en":[
+"Prepared questions for a lab visit",
+"English speech v28",
+"Hawaiian language talk v13"
+]
+},
+"2026-11-16":{
+"h":3.3,
+"p":23,
+"a":7,
+"t":[
+"talk",
+"study"
+],
+"ja":[
+"英語スピーチのスライドを v41（34枚）、原稿を v28 まで直した",
+"去年の大会の発表を分析して、自分の発表に取り入れた",
+"応用プログラミングの課題を出した"
+],
+"en":[
+"English speech: slides v41 (34 slides), script v28",
+"Analyzed last year's speeches and applied what I learned",
+"Submitted a programming assignment"
+]
+},
+"2026-11-17":{
+"h":0.0,
+"p":0,
+"a":10,
+"t":[
+"study"
+],
+"ja":[
+"実験（C言語のタイピングソフト）の最終レポートを出した"
+],
+"en":[
+"Submitted the final report for my C typing-app lab"
+]
+}
+}
+}

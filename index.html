@@ -168,6 +168,44 @@ h3 { font-size: 17px; margin: 0 0 4px; line-height: 1.5; }
 .upcoming .when { color: var(--accent); }
 @media (max-width: 560px) { .articles li { flex-direction: column; gap: 2px; } }
 
+/* 毎日の記録 */
+.log-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 24px; max-width: 46em; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; min-width: 0; }
+.stat b { display: block; font: 500 26px/1.2 var(--font-mono); font-variant-numeric: tabular-nums; }
+.stat b small { font-size: 13px; color: var(--muted); margin-left: 3px; }
+.stat span { font-size: 13px; color: var(--muted); }
+.log-grid { display: grid; grid-template-columns: minmax(0, auto) minmax(0, 1fr); gap: 24px; align-items: start; }
+.heat-box { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; min-width: 0; }
+.heat-scroll { overflow-x: auto; padding-bottom: 4px; }
+.heat { display: grid; grid-auto-flow: column; grid-template-rows: 14px repeat(7, 16px); gap: 4px; width: max-content; }
+.heat .mon { font: 400 11px/14px var(--font-mono); color: var(--muted); white-space: nowrap; }
+.heat .dow { font: 400 10px/16px var(--font-mono); color: var(--muted); padding-right: 4px; }
+.cell { width: 16px; height: 16px; border-radius: 3px; border: 0; padding: 0; background: var(--line); cursor: pointer; }
+.cell.out { background: transparent; cursor: default; }
+.cell.l1 { background: color-mix(in srgb, var(--accent) 28%, var(--surface)); }
+.cell.l2 { background: color-mix(in srgb, var(--accent) 50%, var(--surface)); }
+.cell.l3 { background: color-mix(in srgb, var(--accent) 74%, var(--surface)); }
+.cell.l4 { background: var(--accent); }
+.cell[aria-pressed="true"] { outline: 2px solid var(--fg); outline-offset: 1px; }
+.heat-legend { display: flex; align-items: center; gap: 4px; margin-top: 10px; font: 400 11px var(--font-mono); color: var(--muted); }
+.heat-legend i { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
+.day-card { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; padding: 16px 18px; min-width: 0; }
+.day-card .d { font: 500 14px var(--font-mono); color: var(--muted); }
+.day-card .h { font: 500 22px var(--font-mono); margin: 2px 0 8px; }
+.day-card ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; font-size: 15px; }
+.day-card .none { color: var(--muted); font-size: 14px; margin: 0; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+.recent { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 10px; max-width: 52em; }
+.recent li { display: grid; grid-template-columns: 7.5em 4.5em minmax(0, 1fr); gap: 12px; border-bottom: 1px solid var(--line); padding-bottom: 10px; font-size: 15px; }
+.recent .hrs { font: 500 13px/1.9 var(--font-mono); color: var(--accent); font-variant-numeric: tabular-nums; }
+.log-note { font-size: 13px; color: var(--muted); margin: 18px 0 0; max-width: 46em; }
+@media (max-width: 860px) { .log-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) {
+  .log-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .recent li { grid-template-columns: 6.5em minmax(0, 1fr); }
+  .recent li > :last-child { grid-column: 1 / -1; }
+}
+
 /* 連絡先 */
 .contact { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 .mail { font: 500 16px var(--font-mono); padding: 8px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; user-select: all; }
@@ -198,6 +236,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
       <a href="#semiconductor"><span lang="ja">半導体</span><span lang="en">Semiconductors</span></a>
       <a href="#global"><span lang="ja">海外</span><span lang="en">Global</span></a>
       <a href="#build"><span lang="ja">作った物</span><span lang="en">Things I built</span></a>
+      <a href="#log"><span lang="ja">毎日の記録</span><span lang="en">Daily log</span></a>
       <a href="#campus"><span lang="ja">学内外の活動</span><span lang="en">Activities</span></a>
       <a href="#timeline"><span lang="ja">年表</span><span lang="en">Timeline</span></a>
       <a href="#contact"><span lang="ja">連絡先</span><span lang="en">Contact</span></a>
@@ -455,6 +494,25 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
     </div>
   </section>
 
+  <section id="log">
+    <div class="wrap">
+      <p class="mark">Daily log</p>
+      <h2><span lang="ja">毎日の記録</span><span lang="en">Daily log</span></h2>
+      <p class="sub"><span lang="ja">Claude Code と一緒に作業した時間と、その日にやったことです。色が濃い日ほど長く作業しています。マスを押すと、その日の中身が出ます。</span><span lang="en">How long I worked with Claude Code each day, and what I did. Darker squares mean longer hours. Tap a square to see that day.</span></p>
+      <div class="log-stats" id="log-stats"></div>
+      <div class="log-grid">
+        <div class="heat-box">
+          <div class="heat-scroll"><div class="heat" id="heat" role="group" aria-label="calendar"></div></div>
+          <div class="heat-legend"><span lang="ja">短い</span><span lang="en">Less</span><i style="background: var(--line)"></i><i class="cell l1"></i><i class="cell l2"></i><i class="cell l3"></i><i class="cell l4"></i><span lang="ja">長い</span><span lang="en">More</span></div>
+        </div>
+        <div class="day-card" id="day-card" aria-live="polite"></div>
+      </div>
+      <h3 class="upcoming-title"><span lang="ja">最近の7日</span><span lang="en">Last 7 days</span></h3>
+      <ul class="recent" id="recent"></ul>
+      <p class="log-note"><span lang="ja">時間は Claude Code の会話の記録から機械で数えています。やり取りが15分以上止まったら、そこで区切ります。2つの会話を同時に開いていても二重には数えません。決まった時刻に自動で動く作業は時間に入れず、「自動で動いた回数」として別に数えています。</span><span lang="en">Hours are counted automatically from my Claude Code session logs. A pause of more than 15 minutes ends a block, and parallel sessions are not counted twice. Scheduled jobs that run on their own are not counted as hours; they are shown separately as automated runs.</span></p>
+    </div>
+  </section>
+
   <section id="campus">
     <div class="wrap">
       <p class="mark">Activities</p>
@@ -528,7 +586,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
 </main>
 
 <footer>
-  <div class="wrap"><span lang="ja">最終更新 2026年10月17日</span><span lang="en">Last updated October 17, 2026</span></div>
+  <div class="wrap"><span lang="ja">最終更新 2026年11月18日</span><span lang="en">Last updated November 18, 2026</span></div>
 </footer>
 
 <script>
@@ -561,6 +619,103 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
     } else {
       window.getSelection().selectAllChildren(document.getElementById("mail"));
     }
+  });
+})();
+</script>
+<script>
+(function () {
+  var TAG = {
+    study: { ja: "授業・実験", en: "Study" },
+    talk: { ja: "発表", en: "Talks" },
+    build: { ja: "道具づくり", en: "Building" },
+    club: { ja: "課外活動", en: "Activities" }
+  };
+  var DOW_JA = ["日", "月", "火", "水", "木", "金", "土"];
+  var DOW_EN = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  var MON_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function bi(ja, en) { return '<span lang="ja">' + ja + '</span><span lang="en">' + en + "</span>"; }
+  function parse(d) { var p = d.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function key(dt) { return dt.getFullYear() + "-" + String(dt.getMonth() + 1).padStart(2, "0") + "-" + String(dt.getDate()).padStart(2, "0"); }
+  function level(h) { return h <= 0 ? 0 : h < 1 ? 1 : h < 2 ? 2 : h < 4 ? 3 : 4; }
+  function fmtDate(d) {
+    var dt = parse(d);
+    return bi((dt.getMonth() + 1) + "月" + dt.getDate() + "日（" + DOW_JA[dt.getDay()] + "）", DOW_EN[dt.getDay()] + ", " + MON_EN[dt.getMonth()] + " " + dt.getDate());
+  }
+  function chips(t) { return (t || []).map(function (x) { return TAG[x] ? '<span class="tag">' + bi(TAG[x].ja, TAG[x].en) + "</span>" : ""; }).join(""); }
+  function hrs(h) { return h > 0 ? h.toFixed(1) + "h" : "—"; }
+
+  fetch("assets/activity.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (data) {
+    var days = data.days, keys = Object.keys(days).sort();
+    var total = 0, active = 0, prompts = 0, auto = 0;
+    keys.forEach(function (k) { var r = days[k]; total += r.h; prompts += r.p; auto += r.a; if (r.h > 0) active++; });
+    var streak = 0, best = 0, run = 0;
+    for (var t = parse(data.since); key(t) <= data.until; t.setDate(t.getDate() + 1)) {
+      var r0 = days[key(t)]; if (r0 && r0.h > 0) { run++; if (run > best) best = run; } else run = 0;
+    }
+    streak = run;
+    var stats = document.getElementById("log-stats");
+    [
+      [Math.round(total) + "<small>h</small>", bi("AI と作業した時間", "Hours with AI")],
+      [active + "<small>" + bi("日", "days") + "</small>", bi("作業した日", "Active days")],
+      [prompts.toLocaleString() + "<small>" + bi("回", "") + "</small>", bi("Claude に指示した回数", "Instructions to Claude")],
+      [best + "<small>" + bi("日", "days") + "</small>", bi("いちばん長く続いた日数", "Longest streak")]
+    ].forEach(function (s) { stats.appendChild(el("div", "stat", "<b>" + s[0] + "</b>" + s[1])); });
+
+    var heat = document.getElementById("heat");
+    var start = parse(data.since); start.setDate(start.getDate() - ((start.getDay() + 6) % 7));
+    var end = parse(data.until);
+    heat.appendChild(el("span", "mon", ""));
+    ["月", "", "水", "", "金", "", "日"].forEach(function (d, i) {
+      heat.appendChild(el("span", "dow", d ? bi(d, ["Mon", "", "Wed", "", "Fri", "", "Sun"][i]) : ""));
+    });
+    var cells = {}, lastMonth = -1;
+    for (var w = new Date(start); w <= end; w.setDate(w.getDate() + 7)) {
+      var m = w.getMonth();
+      heat.appendChild(el("span", "mon", m !== lastMonth ? bi((m + 1) + "月", MON_EN[m]) : ""));
+      lastMonth = m;
+      for (var i = 0; i < 7; i++) {
+        var d = new Date(w); d.setDate(d.getDate() + i);
+        var k = key(d), r = days[k];
+        if (k < data.since || k > data.until) { heat.appendChild(el("span", "cell out")); continue; }
+        var h = r ? r.h : 0;
+        var b = el("button", "cell l" + level(h));
+        b.type = "button"; b.dataset.day = k;
+        b.title = k + "  " + hrs(h);
+        b.setAttribute("aria-label", k + " " + hrs(h));
+        b.setAttribute("aria-pressed", "false");
+        b.addEventListener("click", function () { show(this.dataset.day); });
+        heat.appendChild(b); cells[k] = b;
+      }
+    }
+    var card = document.getElementById("day-card");
+    function show(k) {
+      Object.keys(cells).forEach(function (c) { cells[c].setAttribute("aria-pressed", String(c === k)); });
+      var r = days[k] || { h: 0, p: 0, a: 0 };
+      var html = '<div class="d">' + fmtDate(k) + '</div><div class="h">' + hrs(r.h) + "</div>";
+      if (r.t && r.t.length) html += '<div class="chips">' + chips(r.t) + "</div>";
+      if (r.ja && r.ja.length) {
+        html += '<ul lang="ja">' + r.ja.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>";
+        html += '<ul lang="en">' + r.en.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>";
+      } else {
+        html += '<p class="none">' + bi("この日は Claude との作業の記録がありません。", "No work with Claude was recorded on this day.") + "</p>";
+      }
+      if (r.p || r.a) html += '<p class="none" style="margin-top:10px">' + bi("指示 " + r.p + " 回・自動で動いた作業 " + r.a + " 回", r.p + " instructions · " + r.a + " automated runs") + "</p>";
+      card.innerHTML = html;
+    }
+    var withText = keys.filter(function (k) { return days[k].ja && days[k].ja.length; });
+    show(withText.length ? withText[withText.length - 1] : keys[keys.length - 1]);
+    var sc = heat.parentNode; sc.scrollLeft = sc.scrollWidth;
+
+    var recent = document.getElementById("recent");
+    withText.slice(-7).reverse().forEach(function (k) {
+      var r = days[k];
+      recent.appendChild(el("li", "", '<span class="when">' + fmtDate(k) + '</span><span class="hrs">' + hrs(r.h) + "</span><span>" +
+        '<span lang="ja">' + esc(r.ja.join("／")) + '</span><span lang="en">' + esc(r.en.join(" / ")) + "</span></span>"));
+    });
+  }).catch(function () {
+    document.getElementById("log").style.display = "none";
   });
 })();
 </script>
