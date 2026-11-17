@@ -169,40 +169,37 @@ h3 { font-size: 17px; margin: 0 0 4px; line-height: 1.5; }
 .upcoming .when { color: var(--accent); }
 @media (max-width: 560px) { .articles li { flex-direction: column; gap: 2px; } }
 
-/* 毎日の記録 */
+/* 毎日の記録（GitHub の草と同じ緑） */
+:root { --g0: #ebedf0; --g1: #9be9a8; --g2: #40c463; --g3: #30a14e; --g4: #216e39; --g-line: rgba(27, 31, 36, 0.06); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --g0: #161b22; --g1: #0e4429; --g2: #006d32; --g3: #26a641; --g4: #39d353; --g-line: rgba(255, 255, 255, 0.05); } }
+:root[data-theme="dark"] { --g0: #161b22; --g1: #0e4429; --g2: #006d32; --g3: #26a641; --g4: #39d353; --g-line: rgba(255, 255, 255, 0.05); }
 .log-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 20px; }
 .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; min-width: 0; }
 .stat b { display: block; font: 500 28px/1.2 var(--font-mono); font-variant-numeric: tabular-nums; }
 .stat b small { font-size: 13px; color: var(--muted); margin-left: 3px; }
 .stat span { font-size: 13px; color: var(--muted); }
-.cal { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
-.cal-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
-.cal-title { font-size: 18px; font-weight: 700; margin: 0; }
-.cal-title small { font: 400 13px var(--font-mono); color: var(--muted); margin-left: 10px; }
-.cal-nav { display: inline-flex; gap: 6px; }
-.cal-nav button { font: 500 16px var(--font-mono); width: 36px; height: 32px; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: var(--fg); cursor: pointer; }
-.cal-nav button:disabled { opacity: 0.3; cursor: default; }
-.cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
-.cal-dow { font: 500 12px var(--font-mono); color: var(--muted); text-align: center; padding-bottom: 2px; }
-.day { position: relative; min-height: 76px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); padding: 6px 8px; text-align: left; font: inherit; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; min-width: 0; }
-.day .n { font: 500 13px var(--font-mono); color: var(--muted); }
-.day .v { font: 700 17px var(--font-mono); font-variant-numeric: tabular-nums; }
-.day .v small { font-size: 11px; font-weight: 500; margin-left: 1px; }
-.day.blank { visibility: hidden; }
-.day.off { cursor: default; opacity: 0.35; }
-.day.l1 { background: color-mix(in srgb, var(--accent) 16%, var(--bg)); border-color: color-mix(in srgb, var(--accent) 30%, var(--line)); }
-.day.l2 { background: color-mix(in srgb, var(--accent) 34%, var(--bg)); border-color: transparent; }
-.day.l3 { background: color-mix(in srgb, var(--accent) 60%, var(--bg)); border-color: transparent; }
-.day.l4 { background: var(--accent); border-color: transparent; }
-.day.l4 .n, .day.l4 .v { color: var(--on-accent); }
-.day.l3 .n { color: var(--fg); opacity: 0.75; }
-.day[aria-pressed="true"] { outline: 2px solid var(--fg); outline-offset: 2px; }
-.cal-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: 12px; font-size: 12px; color: var(--muted); }
-.cal-legend i { width: 14px; height: 14px; border-radius: 3px; display: inline-block; vertical-align: -2px; margin-right: 4px; border: 1px solid var(--line); }
-.day-card { margin-top: 16px; background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; padding: 16px 18px; }
+.gh { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px 16px 12px; }
+.gh-title { font-size: 15px; margin: 0 0 12px; }
+.gh-title b { font-variant-numeric: tabular-nums; }
+.gh-scroll { overflow-x: auto; }
+.gh-wrap { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px; min-width: 640px; }
+.gh-dows { display: grid; grid-template-rows: 16px repeat(7, 1fr); gap: 3px; font-size: 11px; color: var(--muted); }
+.gh-dows span { line-height: 1; display: flex; align-items: center; }
+.gh-cols { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); grid-template-rows: 16px repeat(7, auto); gap: 3px; }
+.gh-mon { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: visible; line-height: 16px; }
+.sq { aspect-ratio: 1; width: 100%; border: 0; padding: 0; border-radius: 2px; background: var(--g0); outline: 1px solid var(--g-line); outline-offset: -1px; cursor: pointer; }
+.sq.l1 { background: var(--g1); } .sq.l2 { background: var(--g2); } .sq.l3 { background: var(--g3); } .sq.l4 { background: var(--g4); }
+.sq.pre { opacity: 0.45; cursor: default; }
+.sq.none { visibility: hidden; }
+.sq[aria-pressed="true"] { outline: 2px solid var(--fg); outline-offset: 0; }
+.gh-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; margin-top: 10px; font-size: 12px; color: var(--muted); }
+.gh-legend { display: inline-flex; align-items: center; gap: 3px; }
+.gh-legend i { width: 11px; height: 11px; border-radius: 2px; display: inline-block; outline: 1px solid var(--g-line); outline-offset: -1px; }
+.gh-legend span { margin: 0 4px; }
+.day-card { margin-top: 16px; background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--g3); border-radius: 8px; padding: 16px 18px; }
 .day-card .top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 8px; }
 .day-card .d { font-weight: 700; font-size: 17px; }
-.day-card .h { font: 700 20px var(--font-mono); color: var(--accent); }
+.day-card .h { font: 700 20px var(--font-mono); color: var(--g3); }
 .day-card .meta { font-size: 13px; color: var(--muted); }
 .day-card ul { margin: 8px 0 0; padding-left: 1.2em; display: grid; gap: 4px; font-size: 15px; }
 .day-card .none { color: var(--muted); font-size: 14px; margin: 0; }
@@ -210,16 +207,11 @@ h3 { font-size: 17px; margin: 0 0 4px; line-height: 1.5; }
 .chips .tag { margin: 0; }
 .recent { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; max-width: 52em; }
 .recent li { display: grid; grid-template-columns: 7.5em 4.5em minmax(0, 1fr); gap: 12px; border-bottom: 1px solid var(--line); padding-bottom: 10px; font-size: 15px; }
-.recent .hrs { font: 700 14px/1.8 var(--font-mono); color: var(--accent); font-variant-numeric: tabular-nums; }
+.recent .hrs { font: 700 14px/1.8 var(--font-mono); color: var(--g3); font-variant-numeric: tabular-nums; }
 .log-note { font-size: 13px; color: var(--muted); margin: 18px 0 0; max-width: 46em; }
 @media (max-width: 560px) {
   .log-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .cal { padding: 12px 10px; }
-  .cal-grid { gap: 4px; }
-  .day { min-height: 54px; padding: 4px 5px; border-radius: 6px; }
-  .day .n { font-size: 11px; }
-  .day .v { font-size: 13px; }
-  .day .v small { display: none; }
+  .gh { padding: 12px 10px 10px; }
   .recent li { grid-template-columns: 6.5em minmax(0, 1fr); }
   .recent li > :last-child { grid-column: 1 / -1; }
 }
@@ -516,26 +508,25 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
     <div class="wrap">
       <p class="mark">Daily log</p>
       <h2><span lang="ja">毎日の記録</span><span lang="en">Daily log</span></h2>
-      <p class="sub"><span lang="ja">Claude Code と一緒に作業した時間と、その日にやったことです。色が濃い日ほど長く作業しています。日付を押すと、その日の中身が出ます。</span><span lang="en">How long I worked with Claude Code each day, and what I did. Darker days mean longer hours. Tap a date to see that day.</span></p>
+      <p class="sub"><span lang="ja">Claude Code と一緒に作業した時間です。GitHub の草と同じで、緑が濃い日ほど長く作業しています。マスを押すと、その日にやったことが出ます。</span><span lang="en">How long I worked with Claude Code each day, shown like a GitHub contribution graph. Darker green means longer hours. Tap a square to see what I did that day.</span></p>
       <div class="log-stats" id="log-stats"></div>
-      <div class="cal">
-        <div class="cal-head">
-          <p class="cal-title" id="cal-title"></p>
-          <div class="cal-nav"><button type="button" id="cal-prev" aria-label="previous month">‹</button><button type="button" id="cal-next" aria-label="next month">›</button></div>
+      <div class="gh">
+        <p class="gh-title" id="gh-title"></p>
+        <div class="gh-scroll" id="gh-scroll">
+          <div class="gh-wrap">
+            <div class="gh-dows" id="gh-dows"></div>
+            <div class="gh-cols" id="gh-cols" role="group" aria-label="calendar"></div>
+          </div>
         </div>
-        <div class="cal-grid" id="cal-grid"></div>
-        <div class="cal-legend">
-          <span><i style="background: var(--bg)"></i><span lang="ja">記録なし</span><span lang="en">None</span></span>
-          <span><i class="l1" style="background: color-mix(in srgb, var(--accent) 16%, var(--bg))"></i><span lang="ja">1時間未満</span><span lang="en">&lt; 1h</span></span>
-          <span><i style="background: color-mix(in srgb, var(--accent) 34%, var(--bg))"></i><span lang="ja">1〜2時間</span><span lang="en">1–2h</span></span>
-          <span><i style="background: color-mix(in srgb, var(--accent) 60%, var(--bg))"></i><span lang="ja">2〜4時間</span><span lang="en">2–4h</span></span>
-          <span><i style="background: var(--accent)"></i><span lang="ja">4時間以上</span><span lang="en">4h +</span></span>
+        <div class="gh-foot">
+          <span id="gh-since"></span>
+          <span class="gh-legend"><span lang="ja">短い</span><span lang="en">Less</span><i style="background: var(--g0)"></i><i style="background: var(--g1)"></i><i style="background: var(--g2)"></i><i style="background: var(--g3)"></i><i style="background: var(--g4)"></i><span lang="ja">長い</span><span lang="en">More</span></span>
         </div>
       </div>
       <div class="day-card" id="day-card" aria-live="polite"></div>
       <h3 class="upcoming-title"><span lang="ja">最近の7日</span><span lang="en">Last 7 days</span></h3>
       <ul class="recent" id="recent"></ul>
-      <p class="log-note"><span lang="ja">時間は Claude Code の会話の記録から機械で数えています。やり取りが15分以上止まったら、そこで区切ります。2つの会話を同時に開いていても二重には数えません。決まった時刻に自動で動く作業は時間に入れず、「自動で動いた作業」の回数として別に数えています。</span><span lang="en">Hours are counted automatically from my Claude Code session logs. A pause of more than 15 minutes ends a block, and parallel sessions are not counted twice. Scheduled jobs that run on their own are not counted as hours; they are shown separately as automated runs.</span></p>
+      <p class="log-note"><span lang="ja">色の段は、1時間未満・1〜2時間・2〜4時間・4時間以上の4つです。時間は Claude Code の会話の記録から機械で数えています。やり取りが15分以上止まったら、そこで区切ります。2つの会話を同時に開いていても二重には数えません。決まった時刻に自動で動く作業は時間に入れず、「自動で動いた作業」の回数として別に数えています。</span><span lang="en">The four shades mean under 1 hour, 1–2 hours, 2–4 hours and over 4 hours. Hours are counted automatically from my Claude Code session logs. A pause of more than 15 minutes ends a block, and parallel sessions are not counted twice. Scheduled jobs that run on their own are not counted as hours; they are shown separately as automated runs.</span></p>
     </div>
   </section>
 
@@ -658,7 +649,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
   };
   var DOW_JA = ["日", "月", "火", "水", "木", "金", "土"];
   var DOW_EN = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  var MON_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var MON_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function bi(ja, en) { return '<span lang="ja">' + ja + '</span><span lang="en">' + en + "</span>"; }
@@ -667,8 +658,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
   function level(h) { return h <= 0 ? 0 : h < 1 ? 1 : h < 2 ? 2 : h < 4 ? 3 : 4; }
   function fmtDate(d) {
     var dt = parse(d);
-    return bi((dt.getMonth() + 1) + "月" + dt.getDate() + "日（" + DOW_JA[dt.getDay()] + "）", DOW_EN[dt.getDay()] + ", " + MON_EN[dt.getMonth()].slice(0, 3) + " " + dt.getDate());
+    return bi(dt.getFullYear() + "年" + (dt.getMonth() + 1) + "月" + dt.getDate() + "日（" + DOW_JA[dt.getDay()] + "）", DOW_EN[dt.getDay()] + ", " + MON_EN[dt.getMonth()] + " " + dt.getDate() + ", " + dt.getFullYear());
   }
+  function shortDate(d) { var dt = parse(d); return bi((dt.getMonth() + 1) + "月" + dt.getDate() + "日（" + DOW_JA[dt.getDay()] + "）", DOW_EN[dt.getDay()] + ", " + MON_EN[dt.getMonth()] + " " + dt.getDate()); }
   function chips(t) { return (t || []).map(function (x) { return TAG[x] ? '<span class="tag">' + bi(TAG[x].ja, TAG[x].en) + "</span>" : ""; }).join(""); }
   function hrs(h) { return h > 0 ? h.toFixed(1) + "h" : "—"; }
 
@@ -687,45 +679,46 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
       [best + "<small>" + bi("日", "days") + "</small>", bi("いちばん長く続いた日数", "Longest streak")]
     ].forEach(function (s) { stats.appendChild(el("div", "stat", "<b>" + s[0] + "</b>" + s[1])); });
 
-    var first = parse(data.since), last = parse(data.until);
-    var minM = first.getFullYear() * 12 + first.getMonth(), maxM = last.getFullYear() * 12 + last.getMonth();
-    var curM = maxM, selected = null;
-    var grid = document.getElementById("cal-grid"), title = document.getElementById("cal-title");
-    var prev = document.getElementById("cal-prev"), next = document.getElementById("cal-next");
-    var card = document.getElementById("day-card");
+    // GitHub と同じく、最後の日を含む週から52週さかのぼる（日曜はじまり）
+    var end = parse(data.until);
+    var start = new Date(end); start.setDate(start.getDate() - end.getDay() - 52 * 7);
+    var yearH = 0;
+    keys.forEach(function (k) { if (k >= key(start)) yearH += days[k].h; });
+    document.getElementById("gh-title").innerHTML = bi("この1年で <b>" + yearH.toFixed(1) + " 時間</b>、AI と作業しました", "<b>" + yearH.toFixed(1) + " hours</b> with AI in the last year");
+    var sd = parse(data.since);
+    document.getElementById("gh-since").innerHTML = bi("記録は " + (sd.getMonth() + 1) + "月" + sd.getDate() + "日から（それより前は数えていません）", "Tracking since " + MON_EN[sd.getMonth()] + " " + sd.getDate() + ", " + sd.getFullYear());
 
-    function monthTotal(y, m) {
-      var h = 0, n = 0;
-      keys.forEach(function (k) { var d = parse(k); if (d.getFullYear() === y && d.getMonth() === m) { h += days[k].h; if (days[k].h > 0) n++; } });
-      return { h: h, n: n };
-    }
-    function draw() {
-      var y = Math.floor(curM / 12), m = curM % 12, mt = monthTotal(y, m);
-      title.innerHTML = bi(y + "年" + (m + 1) + "月", MON_EN[m] + " " + y) +
-        "<small>" + bi(mt.n + "日・" + mt.h.toFixed(1) + "時間", mt.n + " days · " + mt.h.toFixed(1) + " h") + "</small>";
-      prev.disabled = curM <= minM; next.disabled = curM >= maxM;
-      grid.innerHTML = "";
-      ["月", "火", "水", "木", "金", "土", "日"].forEach(function (d, i) {
-        grid.appendChild(el("div", "cal-dow", bi(d, ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][i])));
-      });
-      var d1 = new Date(y, m, 1), pad = (d1.getDay() + 6) % 7;
-      for (var i = 0; i < pad; i++) grid.appendChild(el("div", "day blank"));
-      var dim = new Date(y, m + 1, 0).getDate();
-      for (var dd = 1; dd <= dim; dd++) {
-        var k = key(new Date(y, m, dd)), r = days[k], inRange = k >= data.since && k <= data.until;
-        var b = el("button", "day" + (inRange ? " l" + level(r ? r.h : 0) : " off"));
+    var dows = document.getElementById("gh-dows");
+    dows.appendChild(el("span"));
+    ["", "月", "", "水", "", "金", ""].forEach(function (d, i) { dows.appendChild(el("span", "", d ? bi(d, ["", "Mon", "", "Wed", "", "Fri", ""][i]) : "")); });
+
+    var cols = document.getElementById("gh-cols"), cells = {}, lastMonth = -1, selected = null;
+    for (var w = new Date(start); w <= end; w.setDate(w.getDate() + 7)) {
+      // 月の名前は、その月の最初の日を含む週の上に出す
+      var label = "";
+      for (var j = 0; j < 7; j++) { var dj = new Date(w); dj.setDate(dj.getDate() + j); if (dj.getDate() === 1 && dj <= end) { label = bi((dj.getMonth() + 1) + "月", MON_EN[dj.getMonth()]); } }
+      if (w.getTime() === start.getTime() && !label) label = bi((w.getMonth() + 1) + "月", MON_EN[w.getMonth()]);
+      cols.appendChild(el("span", "gh-mon", label));
+      for (var i = 0; i < 7; i++) {
+        var d = new Date(w); d.setDate(d.getDate() + i);
+        var k = key(d), r = days[k];
+        if (d > end) { cols.appendChild(el("span", "sq none")); continue; }
+        var pre = k < data.since, h = r ? r.h : 0;
+        var b = el("button", "sq l" + level(h) + (pre ? " pre" : ""));
         b.type = "button"; b.dataset.day = k;
-        b.innerHTML = '<span class="n">' + dd + '</span><span class="v">' + (inRange && r && r.h > 0 ? r.h.toFixed(1) + "<small>h</small>" : "") + "</span>";
-        b.setAttribute("aria-label", k + " " + (r ? hrs(r.h) : ""));
-        b.setAttribute("aria-pressed", String(k === selected));
-        if (inRange) b.addEventListener("click", function () { show(this.dataset.day); });
-        else b.disabled = true;
-        grid.appendChild(b);
+        b.title = pre ? k : (h > 0 ? h.toFixed(1) + "h · " : "") + k;
+        b.setAttribute("aria-label", k + " " + hrs(h));
+        b.setAttribute("aria-pressed", "false");
+        if (pre) b.disabled = true; else b.addEventListener("click", function () { show(this.dataset.day); });
+        cols.appendChild(b); cells[k] = b;
       }
     }
+    var sc = document.getElementById("gh-scroll"); sc.scrollLeft = sc.scrollWidth;
+
+    var card = document.getElementById("day-card");
     function show(k) {
-      selected = k;
-      grid.querySelectorAll(".day[data-day]").forEach(function (c) { c.setAttribute("aria-pressed", String(c.dataset.day === k)); });
+      if (selected && cells[selected]) cells[selected].setAttribute("aria-pressed", "false");
+      selected = k; if (cells[k]) cells[k].setAttribute("aria-pressed", "true");
       var r = days[k] || { h: 0, p: 0, a: 0 };
       var html = '<div class="top"><span class="d">' + fmtDate(k) + '</span><span class="h">' + (r.h > 0 ? r.h.toFixed(1) + bi("時間", " h") : "") + "</span>";
       if (r.t && r.t.length) html += '<span class="chips">' + chips(r.t) + "</span>";
@@ -742,19 +735,13 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
       if (meta.length) html += '<p class="meta" style="margin:10px 0 0">' + meta.join(" ・ ") + "</p>";
       card.innerHTML = html;
     }
-    prev.addEventListener("click", function () { if (curM > minM) { curM--; draw(); } });
-    next.addEventListener("click", function () { if (curM < maxM) { curM++; draw(); } });
-
-    // 最初に見せるのは、時間も中身もある最後の日
     var good = keys.filter(function (k) { return days[k].h > 0 && days[k].ja && days[k].ja.length; });
-    var start = good.length ? good[good.length - 1] : keys[keys.length - 1];
-    var sd = parse(start); curM = sd.getFullYear() * 12 + sd.getMonth();
-    selected = start; draw(); show(start);
+    show(good.length ? good[good.length - 1] : keys[keys.length - 1]);
 
     var recent = document.getElementById("recent");
     keys.filter(function (k) { return days[k].ja && days[k].ja.length; }).slice(-7).reverse().forEach(function (k) {
       var r = days[k];
-      recent.appendChild(el("li", "", '<span class="when">' + fmtDate(k) + '</span><span class="hrs">' + hrs(r.h) + "</span><span>" +
+      recent.appendChild(el("li", "", '<span class="when">' + shortDate(k) + '</span><span class="hrs">' + hrs(r.h) + "</span><span>" +
         '<span lang="ja">' + esc(r.ja.join("／")) + '</span><span lang="en">' + esc(r.en.join(" / ")) + "</span></span>"));
     });
   }).catch(function () {
