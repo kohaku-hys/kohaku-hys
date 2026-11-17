@@ -522,13 +522,13 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
         </div>
         <div class="gh-foot">
           <span id="gh-since"></span>
-          <span class="gh-legend"><span lang="ja">短い</span><span lang="en">Less</span><i style="background: var(--g0)"></i><i style="background: var(--g1)"></i><i style="background: var(--g2)"></i><i style="background: var(--g3)"></i><i style="background: var(--g4)"></i><span lang="ja">長い</span><span lang="en">More</span><i class="note-i"></i><span lang="ja">時間は数えていない日</span><span lang="en">Notes only</span></span>
+          <span class="gh-legend"><span lang="ja">短い</span><span lang="en">Less</span><i style="background: var(--g0)"></i><i style="background: var(--g1)"></i><i style="background: var(--g2)"></i><i style="background: var(--g3)"></i><i style="background: var(--g4)"></i><span lang="ja">長い</span><span lang="en">More</span></span>
         </div>
       </div>
       <div class="day-card" id="day-card" aria-live="polite"></div>
       <h3 class="upcoming-title"><span lang="ja">最近の7日</span><span lang="en">Last 7 days</span></h3>
       <ul class="recent" id="recent"></ul>
-      <p class="log-note"><span lang="ja">色の段は、1時間未満・1〜2時間・2〜4時間・4時間以上の4つです。時間は Claude Code の会話の記録から機械で数えています。やり取りが15分以上止まったら、そこで区切ります。2つの会話を同時に開いていても二重には数えません。決まった時刻に自動で動く作業は時間に入れず、「自動で動いた作業」の回数として別に数えています。</span><span lang="en">The four shades mean under 1 hour, 1–2 hours, 2–4 hours and over 4 hours. Hours are counted automatically from my Claude Code session logs. A pause of more than 15 minutes ends a block, and parallel sessions are not counted twice. Scheduled jobs that run on their own are not counted as hours; they are shown separately as automated runs.</span></p>
+      <p class="log-note"><span lang="ja">色の段は、1時間未満・1〜2時間・2〜4時間・4時間以上の4つです。10月16日からの時間は、Claude Code の会話の記録から機械で数えています。それより前は会話の記録が残っていないので、日記に「やったこと」がある日を、平日は1時間・土日は30分として数えた推定です。やり取りが15分以上止まったら、そこで区切ります。2つの会話を同時に開いていても二重には数えません。決まった時刻に自動で動く作業は時間に入れず、「自動で動いた作業」の回数として別に数えています。</span><span lang="en">The four shades mean under 1 hour, 1–2 hours, 2–4 hours and over 4 hours. From October 16, hours are counted automatically from my Claude Code session logs. Earlier logs no longer exist, so days with notes in my journal are estimated at 1 hour on weekdays and 30 minutes on weekends. A pause of more than 15 minutes ends a block, and parallel sessions are not counted twice. Scheduled jobs that run on their own are not counted as hours; they are shown separately as automated runs.</span></p>
     </div>
   </section>
 
@@ -670,13 +670,14 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
     var days = data.days, keys = Object.keys(days).sort();
     var total = 0, active = 0, prompts = 0, best = 0, run = 0;
     function has(r) { return r && (r.h > 0 || r.n); }
-    keys.forEach(function (k) { var r = days[k]; total += r.h; prompts += r.p; if (has(r)) active++; });
+    var measured = 0;
+    keys.forEach(function (k) { var r = days[k]; total += r.h; prompts += r.p; if (!r.e) measured += r.h; if (has(r)) active++; });
     for (var t = parse(data.notes_since || data.since); key(t) <= data.until; t.setDate(t.getDate() + 1)) {
       if (has(days[key(t)])) { run++; if (run > best) best = run; } else run = 0;
     }
     var stats = document.getElementById("log-stats");
     [
-      [Math.round(total) + "<small>h</small>", bi("AI と作業した時間", "Hours with AI")],
+      [Math.round(total) + "<small>h</small>", bi("AI と作業した時間（うち実測 " + Math.round(measured) + "h）", "Hours with AI (" + Math.round(measured) + "h measured)")],
       [active + "<small>" + bi("日", "days") + "</small>", bi("記録のある日", "Days on record")],
       [prompts.toLocaleString() + "<small>" + bi("回", "") + "</small>", bi("Claude に指示した回数", "Instructions to Claude")],
       [best + "<small>" + bi("日", "days") + "</small>", bi("いちばん長く続いた日数", "Longest streak")]
@@ -685,11 +686,11 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
     // GitHub と同じく、最後の日を含む週から52週さかのぼる（日曜はじまり）
     var end = parse(data.until);
     var start = new Date(end); start.setDate(start.getDate() - end.getDay() - 52 * 7);
-    var yearH = 0;
-    keys.forEach(function (k) { if (k >= key(start)) yearH += days[k].h; });
-    document.getElementById("gh-title").innerHTML = bi("この1年で <b>" + yearH.toFixed(1) + " 時間</b>、AI と作業しました", "<b>" + yearH.toFixed(1) + " hours</b> with AI in the last year");
+    var yearH = 0, yearM = 0;
+    keys.forEach(function (k) { if (k >= key(start)) { yearH += days[k].h; if (!days[k].e) yearM += days[k].h; } });
+    document.getElementById("gh-title").innerHTML = bi("この1年で約 <b>" + Math.round(yearH) + " 時間</b>、AI と作業しました（うち実測 " + yearM.toFixed(1) + " 時間）", "About <b>" + Math.round(yearH) + " hours</b> with AI in the last year (" + yearM.toFixed(1) + " h measured)");
     var sd = parse(data.since);
-    document.getElementById("gh-since").innerHTML = bi("時間は " + (sd.getMonth() + 1) + "月" + sd.getDate() + "日から数えています。それより前の枠だけのマスは、日記に残っている「やったこと」だけの日です", "Hours are tracked since " + MON_EN[sd.getMonth()] + " " + sd.getDate() + ". Outlined squares before that are days with notes only.");
+    document.getElementById("gh-since").innerHTML = bi((sd.getMonth() + 1) + "月" + sd.getDate() + "日からは実測。それより前は日記をもとにした推定です", "Measured since " + MON_EN[sd.getMonth()] + " " + sd.getDate() + "; earlier days are estimates from my notes");
 
     var dows = document.getElementById("gh-dows");
     dows.appendChild(el("span"));
@@ -707,9 +708,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
         var k = key(d), r = days[k];
         if (d > end) { cols.appendChild(el("span", "sq none")); continue; }
         var note = !!(r && r.n), pre = k < data.since && !note, h = r ? r.h : 0;
-        var b = el("button", note ? "sq note" : "sq l" + level(h) + (pre ? " pre" : ""));
+        var b = el("button", note && !(h > 0) ? "sq note" : "sq l" + level(h) + (pre ? " pre" : ""));
         b.type = "button"; b.dataset.day = k;
-        b.title = pre || note ? k : (h > 0 ? h.toFixed(1) + "h · " : "") + k;
+        b.title = pre ? k : (h > 0 ? (r.e ? "~" : "") + h.toFixed(1) + "h · " : "") + k;
         b.setAttribute("aria-label", k + " " + hrs(h));
         b.setAttribute("aria-pressed", "false");
         if (pre) b.disabled = true; else b.addEventListener("click", function () { show(this.dataset.day); });
@@ -723,7 +724,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
       if (selected && cells[selected]) cells[selected].setAttribute("aria-pressed", "false");
       selected = k; if (cells[k]) cells[k].setAttribute("aria-pressed", "true");
       var r = days[k] || { h: 0, p: 0, a: 0 };
-      var html = '<div class="top"><span class="d">' + fmtDate(k) + '</span><span class="h">' + (r.h > 0 ? r.h.toFixed(1) + bi("時間", " h") : "") + "</span>" + (r.n ? '<span class="meta">' + bi("時間は数えていない日", "Hours not tracked") + "</span>" : "");
+      var html = '<div class="top"><span class="d">' + fmtDate(k) + '</span><span class="h">' + (r.h > 0 ? (r.e ? bi("約", "~") : "") + r.h.toFixed(1) + bi("時間", " h") : "") + "</span>" + (r.e ? '<span class="meta">' + bi("推定（日記から。平日は1時間・土日は30分で数えています）", "Estimate from my notes (1 h on weekdays, 30 min on weekends)") + "</span>" : "");
       if (r.t && r.t.length) html += '<span class="chips">' + chips(r.t) + "</span>";
       html += "</div>";
       if (r.ja && r.ja.length) {
