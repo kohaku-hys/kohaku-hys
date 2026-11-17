@@ -23,6 +23,7 @@
   --grid: rgba(23, 33, 43, 0.06);
   --accent: #a9532a;
   --accent-soft: #f4e4da;
+  --on-accent: #ffffff;
   --font-body: "IBM Plex Sans JP", "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
   --font-mono: "IBM Plex Mono", "Consolas", "Menlo", monospace;
   color-scheme: light;
@@ -30,12 +31,12 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0f1418; --surface: #161d23; --fg: #e5ebef; --muted: #98a6b2; --line: #28333c;
-    --grid: rgba(229, 235, 239, 0.05); --accent: #e3925f; --accent-soft: #3a2619; color-scheme: dark;
+    --grid: rgba(229, 235, 239, 0.05); --accent: #e3925f; --accent-soft: #3a2619; --on-accent: #1d120b; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #0f1418; --surface: #161d23; --fg: #e5ebef; --muted: #98a6b2; --line: #28333c;
-  --grid: rgba(229, 235, 239, 0.05); --accent: #e3925f; --accent-soft: #3a2619; color-scheme: dark;
+  --grid: rgba(229, 235, 239, 0.05); --accent: #e3925f; --accent-soft: #3a2619; --on-accent: #1d120b; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -169,39 +170,56 @@ h3 { font-size: 17px; margin: 0 0 4px; line-height: 1.5; }
 @media (max-width: 560px) { .articles li { flex-direction: column; gap: 2px; } }
 
 /* 毎日の記録 */
-.log-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 24px; max-width: 46em; }
+.log-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 20px; }
 .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; min-width: 0; }
-.stat b { display: block; font: 500 26px/1.2 var(--font-mono); font-variant-numeric: tabular-nums; }
+.stat b { display: block; font: 500 28px/1.2 var(--font-mono); font-variant-numeric: tabular-nums; }
 .stat b small { font-size: 13px; color: var(--muted); margin-left: 3px; }
 .stat span { font-size: 13px; color: var(--muted); }
-.log-grid { display: grid; grid-template-columns: minmax(0, auto) minmax(0, 1fr); gap: 24px; align-items: start; }
-.heat-box { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; min-width: 0; }
-.heat-scroll { overflow-x: auto; padding-bottom: 4px; }
-.heat { display: grid; grid-auto-flow: column; grid-template-rows: 14px repeat(7, 16px); gap: 4px; width: max-content; }
-.heat .mon { font: 400 11px/14px var(--font-mono); color: var(--muted); white-space: nowrap; }
-.heat .dow { font: 400 10px/16px var(--font-mono); color: var(--muted); padding-right: 4px; }
-.cell { width: 16px; height: 16px; border-radius: 3px; border: 0; padding: 0; background: var(--line); cursor: pointer; }
-.cell.out { background: transparent; cursor: default; }
-.cell.l1 { background: color-mix(in srgb, var(--accent) 28%, var(--surface)); }
-.cell.l2 { background: color-mix(in srgb, var(--accent) 50%, var(--surface)); }
-.cell.l3 { background: color-mix(in srgb, var(--accent) 74%, var(--surface)); }
-.cell.l4 { background: var(--accent); }
-.cell[aria-pressed="true"] { outline: 2px solid var(--fg); outline-offset: 1px; }
-.heat-legend { display: flex; align-items: center; gap: 4px; margin-top: 10px; font: 400 11px var(--font-mono); color: var(--muted); }
-.heat-legend i { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
-.day-card { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; padding: 16px 18px; min-width: 0; }
-.day-card .d { font: 500 14px var(--font-mono); color: var(--muted); }
-.day-card .h { font: 500 22px var(--font-mono); margin: 2px 0 8px; }
-.day-card ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; font-size: 15px; }
+.cal { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+.cal-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.cal-title { font-size: 18px; font-weight: 700; margin: 0; }
+.cal-title small { font: 400 13px var(--font-mono); color: var(--muted); margin-left: 10px; }
+.cal-nav { display: inline-flex; gap: 6px; }
+.cal-nav button { font: 500 16px var(--font-mono); width: 36px; height: 32px; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: var(--fg); cursor: pointer; }
+.cal-nav button:disabled { opacity: 0.3; cursor: default; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.cal-dow { font: 500 12px var(--font-mono); color: var(--muted); text-align: center; padding-bottom: 2px; }
+.day { position: relative; min-height: 76px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); padding: 6px 8px; text-align: left; font: inherit; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; min-width: 0; }
+.day .n { font: 500 13px var(--font-mono); color: var(--muted); }
+.day .v { font: 700 17px var(--font-mono); font-variant-numeric: tabular-nums; }
+.day .v small { font-size: 11px; font-weight: 500; margin-left: 1px; }
+.day.blank { visibility: hidden; }
+.day.off { cursor: default; opacity: 0.35; }
+.day.l1 { background: color-mix(in srgb, var(--accent) 16%, var(--bg)); border-color: color-mix(in srgb, var(--accent) 30%, var(--line)); }
+.day.l2 { background: color-mix(in srgb, var(--accent) 34%, var(--bg)); border-color: transparent; }
+.day.l3 { background: color-mix(in srgb, var(--accent) 60%, var(--bg)); border-color: transparent; }
+.day.l4 { background: var(--accent); border-color: transparent; }
+.day.l4 .n, .day.l4 .v { color: var(--on-accent); }
+.day.l3 .n { color: var(--fg); opacity: 0.75; }
+.day[aria-pressed="true"] { outline: 2px solid var(--fg); outline-offset: 2px; }
+.cal-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: 12px; font-size: 12px; color: var(--muted); }
+.cal-legend i { width: 14px; height: 14px; border-radius: 3px; display: inline-block; vertical-align: -2px; margin-right: 4px; border: 1px solid var(--line); }
+.day-card { margin-top: 16px; background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; padding: 16px 18px; }
+.day-card .top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 8px; }
+.day-card .d { font-weight: 700; font-size: 17px; }
+.day-card .h { font: 700 20px var(--font-mono); color: var(--accent); }
+.day-card .meta { font-size: 13px; color: var(--muted); }
+.day-card ul { margin: 8px 0 0; padding-left: 1.2em; display: grid; gap: 4px; font-size: 15px; }
 .day-card .none { color: var(--muted); font-size: 14px; margin: 0; }
-.chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
-.recent { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 10px; max-width: 52em; }
+.chips { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+.chips .tag { margin: 0; }
+.recent { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; max-width: 52em; }
 .recent li { display: grid; grid-template-columns: 7.5em 4.5em minmax(0, 1fr); gap: 12px; border-bottom: 1px solid var(--line); padding-bottom: 10px; font-size: 15px; }
-.recent .hrs { font: 500 13px/1.9 var(--font-mono); color: var(--accent); font-variant-numeric: tabular-nums; }
+.recent .hrs { font: 700 14px/1.8 var(--font-mono); color: var(--accent); font-variant-numeric: tabular-nums; }
 .log-note { font-size: 13px; color: var(--muted); margin: 18px 0 0; max-width: 46em; }
-@media (max-width: 860px) { .log-grid { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 560px) {
   .log-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cal { padding: 12px 10px; }
+  .cal-grid { gap: 4px; }
+  .day { min-height: 54px; padding: 4px 5px; border-radius: 6px; }
+  .day .n { font-size: 11px; }
+  .day .v { font-size: 13px; }
+  .day .v small { display: none; }
   .recent li { grid-template-columns: 6.5em minmax(0, 1fr); }
   .recent li > :last-child { grid-column: 1 / -1; }
 }
@@ -498,18 +516,26 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
     <div class="wrap">
       <p class="mark">Daily log</p>
       <h2><span lang="ja">毎日の記録</span><span lang="en">Daily log</span></h2>
-      <p class="sub"><span lang="ja">Claude Code と一緒に作業した時間と、その日にやったことです。色が濃い日ほど長く作業しています。マスを押すと、その日の中身が出ます。</span><span lang="en">How long I worked with Claude Code each day, and what I did. Darker squares mean longer hours. Tap a square to see that day.</span></p>
+      <p class="sub"><span lang="ja">Claude Code と一緒に作業した時間と、その日にやったことです。色が濃い日ほど長く作業しています。日付を押すと、その日の中身が出ます。</span><span lang="en">How long I worked with Claude Code each day, and what I did. Darker days mean longer hours. Tap a date to see that day.</span></p>
       <div class="log-stats" id="log-stats"></div>
-      <div class="log-grid">
-        <div class="heat-box">
-          <div class="heat-scroll"><div class="heat" id="heat" role="group" aria-label="calendar"></div></div>
-          <div class="heat-legend"><span lang="ja">短い</span><span lang="en">Less</span><i style="background: var(--line)"></i><i class="cell l1"></i><i class="cell l2"></i><i class="cell l3"></i><i class="cell l4"></i><span lang="ja">長い</span><span lang="en">More</span></div>
+      <div class="cal">
+        <div class="cal-head">
+          <p class="cal-title" id="cal-title"></p>
+          <div class="cal-nav"><button type="button" id="cal-prev" aria-label="previous month">‹</button><button type="button" id="cal-next" aria-label="next month">›</button></div>
         </div>
-        <div class="day-card" id="day-card" aria-live="polite"></div>
+        <div class="cal-grid" id="cal-grid"></div>
+        <div class="cal-legend">
+          <span><i style="background: var(--bg)"></i><span lang="ja">記録なし</span><span lang="en">None</span></span>
+          <span><i class="l1" style="background: color-mix(in srgb, var(--accent) 16%, var(--bg))"></i><span lang="ja">1時間未満</span><span lang="en">&lt; 1h</span></span>
+          <span><i style="background: color-mix(in srgb, var(--accent) 34%, var(--bg))"></i><span lang="ja">1〜2時間</span><span lang="en">1–2h</span></span>
+          <span><i style="background: color-mix(in srgb, var(--accent) 60%, var(--bg))"></i><span lang="ja">2〜4時間</span><span lang="en">2–4h</span></span>
+          <span><i style="background: var(--accent)"></i><span lang="ja">4時間以上</span><span lang="en">4h +</span></span>
+        </div>
       </div>
+      <div class="day-card" id="day-card" aria-live="polite"></div>
       <h3 class="upcoming-title"><span lang="ja">最近の7日</span><span lang="en">Last 7 days</span></h3>
       <ul class="recent" id="recent"></ul>
-      <p class="log-note"><span lang="ja">時間は Claude Code の会話の記録から機械で数えています。やり取りが15分以上止まったら、そこで区切ります。2つの会話を同時に開いていても二重には数えません。決まった時刻に自動で動く作業は時間に入れず、「自動で動いた回数」として別に数えています。</span><span lang="en">Hours are counted automatically from my Claude Code session logs. A pause of more than 15 minutes ends a block, and parallel sessions are not counted twice. Scheduled jobs that run on their own are not counted as hours; they are shown separately as automated runs.</span></p>
+      <p class="log-note"><span lang="ja">時間は Claude Code の会話の記録から機械で数えています。やり取りが15分以上止まったら、そこで区切ります。2つの会話を同時に開いていても二重には数えません。決まった時刻に自動で動く作業は時間に入れず、「自動で動いた作業」の回数として別に数えています。</span><span lang="en">Hours are counted automatically from my Claude Code session logs. A pause of more than 15 minutes ends a block, and parallel sessions are not counted twice. Scheduled jobs that run on their own are not counted as hours; they are shown separately as automated runs.</span></p>
     </div>
   </section>
 
@@ -632,7 +658,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
   };
   var DOW_JA = ["日", "月", "火", "水", "木", "金", "土"];
   var DOW_EN = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  var MON_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var MON_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function bi(ja, en) { return '<span lang="ja">' + ja + '</span><span lang="en">' + en + "</span>"; }
@@ -641,20 +667,18 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
   function level(h) { return h <= 0 ? 0 : h < 1 ? 1 : h < 2 ? 2 : h < 4 ? 3 : 4; }
   function fmtDate(d) {
     var dt = parse(d);
-    return bi((dt.getMonth() + 1) + "月" + dt.getDate() + "日（" + DOW_JA[dt.getDay()] + "）", DOW_EN[dt.getDay()] + ", " + MON_EN[dt.getMonth()] + " " + dt.getDate());
+    return bi((dt.getMonth() + 1) + "月" + dt.getDate() + "日（" + DOW_JA[dt.getDay()] + "）", DOW_EN[dt.getDay()] + ", " + MON_EN[dt.getMonth()].slice(0, 3) + " " + dt.getDate());
   }
   function chips(t) { return (t || []).map(function (x) { return TAG[x] ? '<span class="tag">' + bi(TAG[x].ja, TAG[x].en) + "</span>" : ""; }).join(""); }
   function hrs(h) { return h > 0 ? h.toFixed(1) + "h" : "—"; }
 
   fetch("assets/activity.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (data) {
     var days = data.days, keys = Object.keys(days).sort();
-    var total = 0, active = 0, prompts = 0, auto = 0;
-    keys.forEach(function (k) { var r = days[k]; total += r.h; prompts += r.p; auto += r.a; if (r.h > 0) active++; });
-    var streak = 0, best = 0, run = 0;
+    var total = 0, active = 0, prompts = 0, best = 0, run = 0;
+    keys.forEach(function (k) { var r = days[k]; total += r.h; prompts += r.p; if (r.h > 0) active++; });
     for (var t = parse(data.since); key(t) <= data.until; t.setDate(t.getDate() + 1)) {
       var r0 = days[key(t)]; if (r0 && r0.h > 0) { run++; if (run > best) best = run; } else run = 0;
     }
-    streak = run;
     var stats = document.getElementById("log-stats");
     [
       [Math.round(total) + "<small>h</small>", bi("AI と作業した時間", "Hours with AI")],
@@ -663,53 +687,72 @@ html { scroll-behavior: smooth; scroll-padding-top: 64px; }
       [best + "<small>" + bi("日", "days") + "</small>", bi("いちばん長く続いた日数", "Longest streak")]
     ].forEach(function (s) { stats.appendChild(el("div", "stat", "<b>" + s[0] + "</b>" + s[1])); });
 
-    var heat = document.getElementById("heat");
-    var start = parse(data.since); start.setDate(start.getDate() - ((start.getDay() + 6) % 7));
-    var end = parse(data.until);
-    heat.appendChild(el("span", "mon", ""));
-    ["月", "", "水", "", "金", "", "日"].forEach(function (d, i) {
-      heat.appendChild(el("span", "dow", d ? bi(d, ["Mon", "", "Wed", "", "Fri", "", "Sun"][i]) : ""));
-    });
-    var cells = {}, lastMonth = -1;
-    for (var w = new Date(start); w <= end; w.setDate(w.getDate() + 7)) {
-      var m = w.getMonth();
-      heat.appendChild(el("span", "mon", m !== lastMonth ? bi((m + 1) + "月", MON_EN[m]) : ""));
-      lastMonth = m;
-      for (var i = 0; i < 7; i++) {
-        var d = new Date(w); d.setDate(d.getDate() + i);
-        var k = key(d), r = days[k];
-        if (k < data.since || k > data.until) { heat.appendChild(el("span", "cell out")); continue; }
-        var h = r ? r.h : 0;
-        var b = el("button", "cell l" + level(h));
+    var first = parse(data.since), last = parse(data.until);
+    var minM = first.getFullYear() * 12 + first.getMonth(), maxM = last.getFullYear() * 12 + last.getMonth();
+    var curM = maxM, selected = null;
+    var grid = document.getElementById("cal-grid"), title = document.getElementById("cal-title");
+    var prev = document.getElementById("cal-prev"), next = document.getElementById("cal-next");
+    var card = document.getElementById("day-card");
+
+    function monthTotal(y, m) {
+      var h = 0, n = 0;
+      keys.forEach(function (k) { var d = parse(k); if (d.getFullYear() === y && d.getMonth() === m) { h += days[k].h; if (days[k].h > 0) n++; } });
+      return { h: h, n: n };
+    }
+    function draw() {
+      var y = Math.floor(curM / 12), m = curM % 12, mt = monthTotal(y, m);
+      title.innerHTML = bi(y + "年" + (m + 1) + "月", MON_EN[m] + " " + y) +
+        "<small>" + bi(mt.n + "日・" + mt.h.toFixed(1) + "時間", mt.n + " days · " + mt.h.toFixed(1) + " h") + "</small>";
+      prev.disabled = curM <= minM; next.disabled = curM >= maxM;
+      grid.innerHTML = "";
+      ["月", "火", "水", "木", "金", "土", "日"].forEach(function (d, i) {
+        grid.appendChild(el("div", "cal-dow", bi(d, ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][i])));
+      });
+      var d1 = new Date(y, m, 1), pad = (d1.getDay() + 6) % 7;
+      for (var i = 0; i < pad; i++) grid.appendChild(el("div", "day blank"));
+      var dim = new Date(y, m + 1, 0).getDate();
+      for (var dd = 1; dd <= dim; dd++) {
+        var k = key(new Date(y, m, dd)), r = days[k], inRange = k >= data.since && k <= data.until;
+        var b = el("button", "day" + (inRange ? " l" + level(r ? r.h : 0) : " off"));
         b.type = "button"; b.dataset.day = k;
-        b.title = k + "  " + hrs(h);
-        b.setAttribute("aria-label", k + " " + hrs(h));
-        b.setAttribute("aria-pressed", "false");
-        b.addEventListener("click", function () { show(this.dataset.day); });
-        heat.appendChild(b); cells[k] = b;
+        b.innerHTML = '<span class="n">' + dd + '</span><span class="v">' + (inRange && r && r.h > 0 ? r.h.toFixed(1) + "<small>h</small>" : "") + "</span>";
+        b.setAttribute("aria-label", k + " " + (r ? hrs(r.h) : ""));
+        b.setAttribute("aria-pressed", String(k === selected));
+        if (inRange) b.addEventListener("click", function () { show(this.dataset.day); });
+        else b.disabled = true;
+        grid.appendChild(b);
       }
     }
-    var card = document.getElementById("day-card");
     function show(k) {
-      Object.keys(cells).forEach(function (c) { cells[c].setAttribute("aria-pressed", String(c === k)); });
+      selected = k;
+      grid.querySelectorAll(".day[data-day]").forEach(function (c) { c.setAttribute("aria-pressed", String(c.dataset.day === k)); });
       var r = days[k] || { h: 0, p: 0, a: 0 };
-      var html = '<div class="d">' + fmtDate(k) + '</div><div class="h">' + hrs(r.h) + "</div>";
-      if (r.t && r.t.length) html += '<div class="chips">' + chips(r.t) + "</div>";
+      var html = '<div class="top"><span class="d">' + fmtDate(k) + '</span><span class="h">' + (r.h > 0 ? r.h.toFixed(1) + bi("時間", " h") : "") + "</span>";
+      if (r.t && r.t.length) html += '<span class="chips">' + chips(r.t) + "</span>";
+      html += "</div>";
       if (r.ja && r.ja.length) {
         html += '<ul lang="ja">' + r.ja.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>";
         html += '<ul lang="en">' + r.en.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>";
       } else {
         html += '<p class="none">' + bi("この日は Claude との作業の記録がありません。", "No work with Claude was recorded on this day.") + "</p>";
       }
-      if (r.p || r.a) html += '<p class="none" style="margin-top:10px">' + bi("指示 " + r.p + " 回・自動で動いた作業 " + r.a + " 回", r.p + " instructions · " + r.a + " automated runs") + "</p>";
+      var meta = [];
+      if (r.p) meta.push(bi("Claude に指示 " + r.p + " 回", r.p + " instructions"));
+      if (r.a) meta.push(bi("自動で動いた作業 " + r.a + " 回", r.a + " automated runs"));
+      if (meta.length) html += '<p class="meta" style="margin:10px 0 0">' + meta.join(" ・ ") + "</p>";
       card.innerHTML = html;
     }
-    var withText = keys.filter(function (k) { return days[k].ja && days[k].ja.length; });
-    show(withText.length ? withText[withText.length - 1] : keys[keys.length - 1]);
-    var sc = heat.parentNode; sc.scrollLeft = sc.scrollWidth;
+    prev.addEventListener("click", function () { if (curM > minM) { curM--; draw(); } });
+    next.addEventListener("click", function () { if (curM < maxM) { curM++; draw(); } });
+
+    // 最初に見せるのは、時間も中身もある最後の日
+    var good = keys.filter(function (k) { return days[k].h > 0 && days[k].ja && days[k].ja.length; });
+    var start = good.length ? good[good.length - 1] : keys[keys.length - 1];
+    var sd = parse(start); curM = sd.getFullYear() * 12 + sd.getMonth();
+    selected = start; draw(); show(start);
 
     var recent = document.getElementById("recent");
-    withText.slice(-7).reverse().forEach(function (k) {
+    keys.filter(function (k) { return days[k].ja && days[k].ja.length; }).slice(-7).reverse().forEach(function (k) {
       var r = days[k];
       recent.appendChild(el("li", "", '<span class="when">' + fmtDate(k) + '</span><span class="hrs">' + hrs(r.h) + "</span><span>" +
         '<span lang="ja">' + esc(r.ja.join("／")) + '</span><span lang="en">' + esc(r.en.join(" / ")) + "</span></span>"));
